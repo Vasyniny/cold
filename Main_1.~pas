@@ -1,0 +1,2387 @@
+unit Main;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, JvXPCore, JvXPButtons, StdCtrls, JvGradientHeaderPanel, DB,
+  AppEvnts, ExtCtrls, CPort, JvExControls, JvXPBar, JvLED, jpeg, CPortCtl,
+  JvExStdCtrls, JvEdit, Buttons, Proc, Grids, Menus, JclDebug, ComCtrls,
+  JvExForms, JvScrollBox, ShellApi, DBGrids;
+
+type
+  TfMain = class(TForm)
+    pnlTop: TPanel;
+    Label18: TLabel;
+    Image4: TImage;
+    TmrIsp: TTimer;
+    AppEvents: TApplicationEvents;
+    PnlIsp: TJvGradientHeaderPanel;
+    lTime_1: TLabel;
+    lChTm_1: TLabel;
+    Bevel2: TBevel;
+    Bevel4: TBevel;
+    lTime_2: TLabel;
+    lChTm_2: TLabel;
+    lTime_3: TLabel;
+    lChTm_3: TLabel;
+    lTime_4: TLabel;
+    lChTm_4: TLabel;
+    lTime_5: TLabel;
+    lChTm_5: TLabel;
+    lTime_6: TLabel;
+    lChTm_6: TLabel;
+    lTime_7: TLabel;
+    lChTm_7: TLabel;
+    lTime_8: TLabel;
+    lChTm_8: TLabel;
+    lTime_9: TLabel;
+    lChTm_9: TLabel;
+    lTime_10: TLabel;
+    lChTm_10: TLabel;
+    lTime_11: TLabel;
+    lChTm_11: TLabel;
+    lTime_12: TLabel;
+    lChTm_12: TLabel;
+    Bevel3: TBevel;
+    Bevel27: TBevel;
+    Bevel28: TBevel;
+    Bevel30: TBevel;
+    Bevel29: TBevel;
+    Bevel32: TBevel;
+    Bevel31: TBevel;
+    Bevel34: TBevel;
+    Bevel33: TBevel;
+    Bevel36: TBevel;
+    Bevel35: TBevel;
+    Bevel37: TBevel;
+    pCurTime_1: TPanel;
+    pCurWch_1: TPanel;
+    pCurTime_2: TPanel;
+    pCurWch_2: TPanel;
+    pCycl_2: TPanel;
+    pCurTime_3: TPanel;
+    pCurWch_3: TPanel;
+    pCycl_3: TPanel;
+    pCurTime_4: TPanel;
+    pCurWch_4: TPanel;
+    pCycl_4: TPanel;
+    pCurTime_5: TPanel;
+    pCurWch_5: TPanel;
+    pCycl_5: TPanel;
+    pCurTime_6: TPanel;
+    pCurWch_6: TPanel;
+    pCycl_6: TPanel;
+    pCurTime_7: TPanel;
+    pCurWch_7: TPanel;
+    pCycl_7: TPanel;
+    pCurTime_8: TPanel;
+    pCurWch_8: TPanel;
+    pCycl_8: TPanel;
+    pCurTime_9: TPanel;
+    pCurWch_9: TPanel;
+    pCycl_9: TPanel;
+    pCurTime_10: TPanel;
+    pCurWch_10: TPanel;
+    pCycl_10: TPanel;
+    pCurTime_11: TPanel;
+    pCurWch_11: TPanel;
+    pCycl_11: TPanel;
+    pCurTime_12: TPanel;
+    pCurWch_12: TPanel;
+    pCycl_12: TPanel;
+    Panel3: TPanel;
+    pos1: TLabel;
+    pos2: TLabel;
+    pos3: TLabel;
+    pos4: TLabel;
+    pos5: TLabel;
+    pos6: TLabel;
+    pos7: TLabel;
+    pos8: TLabel;
+    pos9: TLabel;
+    pos10: TLabel;
+    pos11: TLabel;
+    pos12: TLabel;
+    Bevel14: TBevel;
+    Bevel15: TBevel;
+    Bevel16: TBevel;
+    Bevel19: TBevel;
+    Bevel20: TBevel;
+    Bevel21: TBevel;
+    Bevel22: TBevel;
+    Bevel23: TBevel;
+    Bevel24: TBevel;
+    Bevel25: TBevel;
+    Bevel26: TBevel;
+    BtnState_1: TJvXPButton;
+    BtnState_2: TJvXPButton;
+    BtnState_3: TJvXPButton;
+    BtnState_4: TJvXPButton;
+    BtnState_5: TJvXPButton;
+    BtnState_6: TJvXPButton;
+    BtnState_7: TJvXPButton;
+    BtnState_8: TJvXPButton;
+    BtnState_9: TJvXPButton;
+    BtnState_10: TJvXPButton;
+    BtnState_11: TJvXPButton;
+    BtnState_12: TJvXPButton;
+    pCurW_1: TPanel;
+    LedP_1: TJvLED;
+    lmW_1: TLabel;
+    lispW_1: TLabel;
+    pCurXK_1: TPanel;
+    lmXK_1: TLabel;
+    lispXK_1: TLabel;
+    pCurMK_1: TPanel;
+    lmMK_1: TLabel;
+    lispMK_1: TLabel;
+    Bevel38: TBevel;
+    Bevel41: TBevel;
+    Bevel42: TBevel;
+    lmWH_1: TLabel;
+    pCurWH_1: TPanel;
+    pnlBottom: TPanel;
+    Image2: TImage;
+    Image6: TImage;
+    Bevel60: TBevel;
+    Image3: TImage;
+    Image5: TImage;
+    Label17: TLabel;
+    Bevel17: TBevel;
+    BtnRes_1: TJvXPButton;
+    BtnRes_2: TJvXPButton;
+    pCurWH_2: TPanel;
+    ImgH_2: TImage;
+    lmWH_2: TLabel;
+    lispW_2: TLabel;
+    lmW_2: TLabel;
+    pCurW_2: TPanel;
+    LedA_2: TJvLED;
+    LedP_2: TJvLED;
+    lispMK_2: TLabel;
+    lmMK_2: TLabel;
+    pCurMK_2: TPanel;
+    lispXK_2: TLabel;
+    lmXK_2: TLabel;
+    pCurXK_2: TPanel;
+    BtnRes_3: TJvXPButton;
+    pCurWH_3: TPanel;
+    ImgH_3: TImage;
+    lmWH_3: TLabel;
+    lispW_3: TLabel;
+    lmW_3: TLabel;
+    pCurW_3: TPanel;
+    LedA_3: TJvLED;
+    LedP_3: TJvLED;
+    lispMK_3: TLabel;
+    lmMK_3: TLabel;
+    pCurMK_3: TPanel;
+    lispXK_3: TLabel;
+    lmXK_3: TLabel;
+    pCurXK_3: TPanel;
+    BtnRes_4: TJvXPButton;
+    pCurWH_4: TPanel;
+    ImgH_4: TImage;
+    lmWH_4: TLabel;
+    lispW_4: TLabel;
+    lmW_4: TLabel;
+    pCurW_4: TPanel;
+    LedA_4: TJvLED;
+    LedP_4: TJvLED;
+    lispMK_4: TLabel;
+    lmMK_4: TLabel;
+    pCurMK_4: TPanel;
+    lispXK_4: TLabel;
+    lmXK_4: TLabel;
+    pCurXK_4: TPanel;
+    BtnRes_5: TJvXPButton;
+    pCurWH_5: TPanel;
+    ImgH_5: TImage;
+    lmWH_5: TLabel;
+    lispW_5: TLabel;
+    lmW_5: TLabel;
+    pCurW_5: TPanel;
+    LedA_5: TJvLED;
+    LedP_5: TJvLED;
+    lispMK_5: TLabel;
+    lmMK_5: TLabel;
+    pCurMK_5: TPanel;
+    lispXK_5: TLabel;
+    lmXK_5: TLabel;
+    pCurXK_5: TPanel;
+    BtnRes_6: TJvXPButton;
+    pCurWH_6: TPanel;
+    ImgH_6: TImage;
+    lmWH_6: TLabel;
+    lispW_6: TLabel;
+    lmW_6: TLabel;
+    pCurW_6: TPanel;
+    LedA_6: TJvLED;
+    LedP_6: TJvLED;
+    lispMK_6: TLabel;
+    lmMK_6: TLabel;
+    pCurMK_6: TPanel;
+    lispXK_6: TLabel;
+    lmXK_6: TLabel;
+    pCurXK_6: TPanel;
+    BtnRes_7: TJvXPButton;
+    pCurWH_7: TPanel;
+    ImgH_7: TImage;
+    lmWH_7: TLabel;
+    lispW_7: TLabel;
+    lmW_7: TLabel;
+    pCurW_7: TPanel;
+    LedA_7: TJvLED;
+    LedP_7: TJvLED;
+    lispMK_7: TLabel;
+    lmMK_7: TLabel;
+    pCurMK_7: TPanel;
+    lispXK_7: TLabel;
+    lmXK_7: TLabel;
+    pCurXK_7: TPanel;
+    BtnRes_8: TJvXPButton;
+    pCurWH_8: TPanel;
+    ImgH_8: TImage;
+    lmWH_8: TLabel;
+    lispW_8: TLabel;
+    lmW_8: TLabel;
+    pCurW_8: TPanel;
+    LedA_8: TJvLED;
+    LedP_8: TJvLED;
+    lispMK_8: TLabel;
+    lmMK_8: TLabel;
+    pCurMK_8: TPanel;
+    lispXK_8: TLabel;
+    lmXK_8: TLabel;
+    pCurXK_8: TPanel;
+    BtnRes_9: TJvXPButton;
+    pCurWH_9: TPanel;
+    ImgH_9: TImage;
+    lmWH_9: TLabel;
+    lispW_9: TLabel;
+    lmW_9: TLabel;
+    pCurW_9: TPanel;
+    LedA_9: TJvLED;
+    LedP_9: TJvLED;
+    lispMK_9: TLabel;
+    lmMK_9: TLabel;
+    pCurMK_9: TPanel;
+    lispXK_9: TLabel;
+    lmXK_9: TLabel;
+    pCurXK_9: TPanel;
+    BtnRes_10: TJvXPButton;
+    pCurWH_10: TPanel;
+    ImgH_10: TImage;
+    lmWH_10: TLabel;
+    lispW_10: TLabel;
+    lmW_10: TLabel;
+    pCurW_10: TPanel;
+    LedA_10: TJvLED;
+    LedP_10: TJvLED;
+    lispMK_10: TLabel;
+    lmMK_10: TLabel;
+    pCurMK_10: TPanel;
+    lispXK_10: TLabel;
+    lmXK_10: TLabel;
+    pCurXK_10: TPanel;
+    BtnRes_11: TJvXPButton;
+    pCurWH_11: TPanel;
+    ImgH_11: TImage;
+    lmWH_11: TLabel;
+    lispW_11: TLabel;
+    lmW_11: TLabel;
+    pCurW_11: TPanel;
+    LedA_11: TJvLED;
+    LedP_11: TJvLED;
+    lispMK_11: TLabel;
+    lmMK_11: TLabel;
+    pCurMK_11: TPanel;
+    lispXK_11: TLabel;
+    lmXK_11: TLabel;
+    pCurXK_11: TPanel;
+    BtnRes_12: TJvXPButton;
+    pCurWH_12: TPanel;
+    ImgH_12: TImage;
+    lmWH_12: TLabel;
+    lispW_12: TLabel;
+    lmW_12: TLabel;
+    pCurW_12: TPanel;
+    LedA_12: TJvLED;
+    LedP_12: TJvLED;
+    lispMK_12: TLabel;
+    lmMK_12: TLabel;
+    pCurMK_12: TPanel;
+    lispXK_12: TLabel;
+    lmXK_12: TLabel;
+    pCurXK_12: TPanel;
+    Panel7: TPanel;
+    Panel8: TPanel;
+    pnlHat: TJvGradientHeaderPanel;
+    Label89: TLabel;
+    Bevel7: TBevel;
+    Bevel8: TBevel;
+    Label7: TLabel;
+    Label9: TLabel;
+    Bevel13: TBevel;
+    Label1: TLabel;
+    Bevel94: TBevel;
+    Label16: TLabel;
+    Bevel39: TBevel;
+    Bevel40: TBevel;
+    Label2: TLabel;
+    Bevel43: TBevel;
+    Label3: TLabel;
+    Label5: TLabel;
+    Label25: TLabel;
+    Label4: TLabel;
+    Bevel47: TBevel;
+    Label12: TLabel;
+    Bevel48: TBevel;
+    Bevel50: TBevel;
+    Bevel54: TBevel;
+    Bevel55: TBevel;
+    Label8: TLabel;
+    lmWch_1: TLabel;
+    lispWch_1: TLabel;
+    lmWch_2: TLabel;
+    lispWch_2: TLabel;
+    lmWch_3: TLabel;
+    lispWch_3: TLabel;
+    lmWch_4: TLabel;
+    lispWch_4: TLabel;
+    lmWch_5: TLabel;
+    lispWch_5: TLabel;
+    lmWch_6: TLabel;
+    lispWch_6: TLabel;
+    lmWch_7: TLabel;
+    lispWch_7: TLabel;
+    lmWch_8: TLabel;
+    lispWch_8: TLabel;
+    lmWch_9: TLabel;
+    lispWch_9: TLabel;
+    lmWch_10: TLabel;
+    lispWch_10: TLabel;
+    lmWch_11: TLabel;
+    lispWch_11: TLabel;
+    lmWch_12: TLabel;
+    lispWch_12: TLabel;
+    edKod_1: TJvEdit;
+    edKod_2: TJvEdit;
+    edKod_3: TJvEdit;
+    edKod_4: TJvEdit;
+    edKod_5: TJvEdit;
+    edKod_6: TJvEdit;
+    edKod_7: TJvEdit;
+    edKod_8: TJvEdit;
+    edKod_9: TJvEdit;
+    edKod_10: TJvEdit;
+    edKod_11: TJvEdit;
+    edKod_12: TJvEdit;
+    Metakon: TComPort;
+    TmrMetakon: TTimer;
+
+    ppMenuKod: TPopupMenu;
+    ppEditKod: TMenuItem;
+    lDate: TLabel;
+    lTime: TLabel;
+    lUser: TLabel;
+    BtnLstXP: TSpeedButton;
+    BtnLstDef: TSpeedButton;
+    BtnEvent: TSpeedButton;
+    BtnUser: TSpeedButton;
+    ppBlock: TPopupMenu;
+    ppEdBlock: TMenuItem;
+    BtnLog: TSpeedButton;
+    ppOnOff: TPopupMenu;
+    ItemOnOff: TMenuItem;
+    lModel_1: TLabel;
+    lModel_2: TLabel;
+    lModel_4: TLabel;
+    lModel_3: TLabel;
+    lModel_6: TLabel;
+    lModel_5: TLabel;
+    lModel_12: TLabel;
+    lModel_11: TLabel;
+    lModel_7: TLabel;
+    lModel_8: TLabel;
+    lModel_9: TLabel;
+    lModel_10: TLabel;
+    Image1: TImage;
+    Panel1: TPanel;
+    ImgNoOff_2: TImage;
+    ImgNoOff_3: TImage;
+    ImgNoOff_4: TImage;
+    ImgNoOff_5: TImage;
+    ImgNoOff_6: TImage;
+    ImgNoOff_7: TImage;
+    ImgNoOff_8: TImage;
+    ImgNoOff_9: TImage;
+    ImgNoOff_10: TImage;
+    ImgNoOff_11: TImage;
+    ImgNoOff_12: TImage;
+    Label6: TLabel;
+    lchPoint9: TLabel;
+    lchPoint8: TLabel;
+    lchPoint7: TLabel;
+    lchPoint6: TLabel;
+    lchPoint5: TLabel;
+    lchPoint4: TLabel;
+    lchPoint3: TLabel;
+    lchPoint2: TLabel;
+    lchPoint12: TLabel;
+    lchPoint11: TLabel;
+    lchPoint10: TLabel;
+    lchPoint1: TLabel;
+    LedA_1: TJvLED;
+    Label10: TLabel;
+    scbBlock9: TJvScrollBox;
+    ltBlock_9: TLabel;
+    Bevel103: TBevel;
+    lmBlockXK_9: TLabel;
+    lmBlockMK_9: TLabel;
+    Label85: TLabel;
+    Bevel104: TBevel;
+    lmToffXK_9: TLabel;
+    lmToffMK_9: TLabel;
+    Label88: TLabel;
+    Bevel105: TBevel;
+    lmTonMK_9: TLabel;
+    lmTonXK_9: TLabel;
+    EdBlockXK_9: TJvEdit;
+    EdBlockMK_9: TJvEdit;
+    EdToffXK_9: TJvEdit;
+    EdToffMK_9: TJvEdit;
+    EdTonXK_9: TJvEdit;
+    EdTonMK_9: TJvEdit;
+    UpDwnXK9: TUpDown;
+    UpDwnMK9: TUpDown;
+    scbBlock8: TJvScrollBox;
+    ltBlock_8: TLabel;
+    Bevel100: TBevel;
+    lmBlockXK_8: TLabel;
+    lmBlockMK_8: TLabel;
+    Label76: TLabel;
+    Bevel101: TBevel;
+    lmToffXK_8: TLabel;
+    lmToffMK_8: TLabel;
+    Label79: TLabel;
+    Bevel102: TBevel;
+    lmTonMK_8: TLabel;
+    lmTonXK_8: TLabel;
+    EdBlockXK_8: TJvEdit;
+    EdBlockMK_8: TJvEdit;
+    EdToffXK_8: TJvEdit;
+    EdToffMK_8: TJvEdit;
+    EdTonXK_8: TJvEdit;
+    EdTonMK_8: TJvEdit;
+    UpDwnXK8: TUpDown;
+    UpDwnMK8: TUpDown;
+    scbBlock7: TJvScrollBox;
+    ltBlock_7: TLabel;
+    Bevel97: TBevel;
+    lmBlockXK_7: TLabel;
+    lmBlockMK_7: TLabel;
+    Label67: TLabel;
+    Bevel98: TBevel;
+    lmToffXK_7: TLabel;
+    lmToffMK_7: TLabel;
+    Label70: TLabel;
+    Bevel99: TBevel;
+    lmTonMK_7: TLabel;
+    lmTonXK_7: TLabel;
+    EdBlockXK_7: TJvEdit;
+    EdBlockMK_7: TJvEdit;
+    EdToffXK_7: TJvEdit;
+    EdToffMK_7: TJvEdit;
+    EdTonXK_7: TJvEdit;
+    EdTonMK_7: TJvEdit;
+    UpDwnXK7: TUpDown;
+    UpDwnMK7: TUpDown;
+    scbBlock6: TJvScrollBox;
+    ltBlock_6: TLabel;
+    Bevel93: TBevel;
+    lmBlockXK_6: TLabel;
+    lmBlockMK_6: TLabel;
+    Label49: TLabel;
+    Bevel95: TBevel;
+    lmToffXK_6: TLabel;
+    lmToffMK_6: TLabel;
+    Label61: TLabel;
+    Bevel96: TBevel;
+    lmTonMK_6: TLabel;
+    lmTonXK_6: TLabel;
+    EdBlockXK_6: TJvEdit;
+    EdBlockMK_6: TJvEdit;
+    EdToffXK_6: TJvEdit;
+    EdToffMK_6: TJvEdit;
+    EdTonXK_6: TJvEdit;
+    EdTonMK_6: TJvEdit;
+    UpDwnXK6: TUpDown;
+    UpDwnMK6: TUpDown;
+    scbBlock5: TJvScrollBox;
+    ltBlock_5: TLabel;
+    Bevel90: TBevel;
+    lmBlockXK_5: TLabel;
+    lmBlockMK_5: TLabel;
+    Label40: TLabel;
+    Bevel91: TBevel;
+    lmToffXK_5: TLabel;
+    lmToffMK_5: TLabel;
+    Label43: TLabel;
+    Bevel92: TBevel;
+    lmTonMK_5: TLabel;
+    lmTonXK_5: TLabel;
+    EdBlockXK_5: TJvEdit;
+    EdBlockMK_5: TJvEdit;
+    EdToffXK_5: TJvEdit;
+    EdToffMK_5: TJvEdit;
+    EdTonXK_5: TJvEdit;
+    EdTonMK_5: TJvEdit;
+    UpDwnXK5: TUpDown;
+    UpDwnMK5: TUpDown;
+    scbBlock4: TJvScrollBox;
+    ltBlock_4: TLabel;
+    Bevel87: TBevel;
+    lmBlockXK_4: TLabel;
+    lmBlockMK_4: TLabel;
+    Label31: TLabel;
+    Bevel88: TBevel;
+    lmToffXK_4: TLabel;
+    lmToffMK_4: TLabel;
+    Label34: TLabel;
+    Bevel89: TBevel;
+    lmTonMK_4: TLabel;
+    lmTonXK_4: TLabel;
+    EdBlockXK_4: TJvEdit;
+    EdBlockMK_4: TJvEdit;
+    EdToffXK_4: TJvEdit;
+    EdToffMK_4: TJvEdit;
+    EdTonXK_4: TJvEdit;
+    EdTonMK_4: TJvEdit;
+    UpDwnXK4: TUpDown;
+    UpDwnMK4: TUpDown;
+    scbBlock3: TJvScrollBox;
+    ltBlock_3: TLabel;
+    Bevel82: TBevel;
+    lmBlockXK_3: TLabel;
+    lmBlockMK_3: TLabel;
+    Label21: TLabel;
+    Bevel85: TBevel;
+    lmToffXK_3: TLabel;
+    lmToffMK_3: TLabel;
+    Label11: TLabel;
+    Bevel86: TBevel;
+    lmTonMK_3: TLabel;
+    lmTonXK_3: TLabel;
+    EdBlockXK_3: TJvEdit;
+    EdBlockMK_3: TJvEdit;
+    EdToffXK_3: TJvEdit;
+    EdToffMK_3: TJvEdit;
+    EdTonXK_3: TJvEdit;
+    EdTonMK_3: TJvEdit;
+    UpDwnXK3: TUpDown;
+    UpDwnMK3: TUpDown;
+    scbBlock2: TJvScrollBox;
+    ltBlock_2: TLabel;
+    Bevel10: TBevel;
+    lmBlockXK_2: TLabel;
+    lmBlockMK_2: TLabel;
+    Label13: TLabel;
+    Bevel74: TBevel;
+    lmToffXK_2: TLabel;
+    lmToffMK_2: TLabel;
+    Label14: TLabel;
+    Bevel76: TBevel;
+    lmTonMK_2: TLabel;
+    lmTonXK_2: TLabel;
+    EdBlockXK_2: TJvEdit;
+    EdBlockMK_2: TJvEdit;
+    EdToffXK_2: TJvEdit;
+    EdToffMK_2: TJvEdit;
+    EdTonXK_2: TJvEdit;
+    EdTonMK_2: TJvEdit;
+    UpDwnXK2: TUpDown;
+    UpDwnMK2: TUpDown;
+    scbBlock12: TJvScrollBox;
+    ltBlock_12: TLabel;
+    Bevel112: TBevel;
+    lmBlockXK_12: TLabel;
+    lmBlockMK_12: TLabel;
+    Label113: TLabel;
+    Bevel113: TBevel;
+    lmToffXK_12: TLabel;
+    lmToffMK_12: TLabel;
+    Label116: TLabel;
+    Bevel114: TBevel;
+    lmTonMK_12: TLabel;
+    lmTonXK_12: TLabel;
+    EdBlockXK_12: TJvEdit;
+    EdBlockMK_12: TJvEdit;
+    EdToffXK_12: TJvEdit;
+    EdToffMK_12: TJvEdit;
+    EdTonXK_12: TJvEdit;
+    EdTonMK_12: TJvEdit;
+    UpDwnXK12: TUpDown;
+    UpDwnMK12: TUpDown;
+    scbBlock11: TJvScrollBox;
+    ltBlock_11: TLabel;
+    Bevel109: TBevel;
+    lmBlockXK_11: TLabel;
+    lmBlockMK_11: TLabel;
+    Label104: TLabel;
+    Bevel110: TBevel;
+    lmToffXK_11: TLabel;
+    lmToffMK_11: TLabel;
+    Label107: TLabel;
+    Bevel111: TBevel;
+    lmTonMK_11: TLabel;
+    lmTonXK_11: TLabel;
+    EdBlockXK_11: TJvEdit;
+    EdBlockMK_11: TJvEdit;
+    EdToffXK_11: TJvEdit;
+    EdToffMK_11: TJvEdit;
+    EdTonXK_11: TJvEdit;
+    EdTonMK_11: TJvEdit;
+    UpDwnXK11: TUpDown;
+    UpDwnMK11: TUpDown;
+    scbBlock10: TJvScrollBox;
+    ltBlock_10: TLabel;
+    Bevel106: TBevel;
+    lmBlockXK_10: TLabel;
+    lmBlockMK_10: TLabel;
+    Label95: TLabel;
+    Bevel107: TBevel;
+    lmToffXK_10: TLabel;
+    lmToffMK_10: TLabel;
+    Label98: TLabel;
+    Bevel108: TBevel;
+    lmTonMK_10: TLabel;
+    lmTonXK_10: TLabel;
+    EdBlockXK_10: TJvEdit;
+    EdBlockMK_10: TJvEdit;
+    EdToffXK_10: TJvEdit;
+    EdToffMK_10: TJvEdit;
+    EdTonXK_10: TJvEdit;
+    EdTonMK_10: TJvEdit;
+    UpDwnXK10: TUpDown;
+    UpDwnMK10: TUpDown;
+    scbBlock1: TJvScrollBox;
+    ltBlock_1: TLabel;
+    Bevel154: TBevel;
+    lmBlockXK_1: TLabel;
+    lmBlockMK_1: TLabel;
+    Label59: TLabel;
+    Bevel153: TBevel;
+    lmToffXK_1: TLabel;
+    lmToffMK_1: TLabel;
+    Label58: TLabel;
+    Bevel155: TBevel;
+    lmTonMK_1: TLabel;
+    lmTonXK_1: TLabel;
+    EdBlockXK_1: TJvEdit;
+    EdBlockMK_1: TJvEdit;
+    EdToffXK_1: TJvEdit;
+    EdToffMK_1: TJvEdit;
+    EdTonXK_1: TJvEdit;
+    EdTonMK_1: TJvEdit;
+    UpDwnXK1: TUpDown;
+    UpDwnMK1: TUpDown;
+    Panel5: TPanel;
+    Panel6: TPanel;
+    Bevel1: TBevel;
+    ledMet9: TJvLED;
+    ledMet8: TJvLED;
+    ledMet7: TJvLED;
+    ledMet6: TJvLED;
+    ledMet5: TJvLED;
+    ledMet4: TJvLED;
+    ledMet3: TJvLED;
+    ledMet2: TJvLED;
+    ledMet12: TJvLED;
+    ledMet11: TJvLED;
+    ledMet10: TJvLED;
+    ledMet1: TJvLED;
+    ImgH_1: TImage;
+    pCycl_1: TPanel;
+    ImgNoOff_1: TImage;
+    LedMetakon: TComLed;
+
+    Label15: TLabel;
+    Label19: TLabel;
+    Label20: TLabel;
+    Bevel9: TBevel;
+    lTokr: TLabel;
+    pTokr: TPanel;
+    DBGrid1: TDBGrid;
+    DBGrid2: TDBGrid;
+    DBGrid3: TDBGrid;
+    dbgrd1: TDBGrid;
+    ELprib: TComPort;
+    TmrELprib: TTimer;
+    ledEL1: TJvLED;
+    JvLED1: TJvLED;
+    JvLED2: TJvLED;
+    JvLED3: TJvLED;
+    JvLED4: TJvLED;
+    JvLED5: TJvLED;
+    JvLED6: TJvLED;
+    JvLED7: TJvLED;
+    JvLED8: TJvLED;
+    JvLED9: TJvLED;
+    JvLED10: TJvLED;
+    JvLED11: TJvLED;
+    ledEL2: TJvLED;
+    ledEL3: TJvLED;
+    ledEL4: TJvLED;
+    ledEL5: TJvLED;
+    ledEL6: TJvLED;
+    ledEL7: TJvLED;
+    ledEL8: TJvLED;
+    ledEL9: TJvLED;
+    ledEL10: TJvLED;
+    ledEL11: TJvLED;
+    ledEL12: TJvLED;
+    ComELpr: TComLed;
+    pnl1: TPanel;
+    pnl2: TPanel;
+    pnl3: TPanel;
+    tmr_XK_MK: TTimer;
+    procedure FormActivate(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure BtnUserClick(Sender: TObject);
+    procedure BtnLstXPClick(Sender: TObject);
+    procedure edKodChange(Sender: TObject);
+    procedure edKodKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure edKodEnter(Sender: TObject);
+
+    procedure FormCreate(Sender: TObject);
+    procedure TmrIspTimer(Sender: TObject);
+    procedure ImgHClick(Sender: TObject);
+    procedure ppEditKodClick(Sender: TObject);
+    procedure TmrMetakonTimer(Sender: TObject);
+    procedure MetakonTxEmpty(Sender: TObject);
+    procedure ImgNoOffClick(Sender: TObject);
+    procedure EdBlockEnter(Sender: TObject);
+    procedure EdBlockKeyPress(Sender: TObject; var Key: Char);
+    procedure EdBlockKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure EdToffKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure BtnStateClick(Sender: TObject);
+    procedure BtnResClick(Sender: TObject);
+    procedure ppEdBlockClick(Sender: TObject);
+    procedure BtnLogClick(Sender: TObject);
+    procedure BtnEventClick(Sender: TObject);
+    procedure posContextPopup(Sender: TObject; MousePos: TPoint;
+      var Handled: Boolean);
+    procedure ItemOnOffClick(Sender: TObject);
+    procedure BtnLstDefClick(Sender: TObject);
+    procedure AppEventsException(Sender: TObject; E: Exception);
+    procedure EdTonKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure UpDwnXKClick(Sender: TObject; Button: TUDBtnType);
+    procedure UpDwnMKClick(Sender: TObject; Button: TUDBtnType);
+    procedure ELpribTxEmpty(Sender: TObject);
+    procedure TmrELpribTimer(Sender: TObject);
+    procedure tmr_XK_MKTimer(Sender: TObject);
+
+
+ //   procedure ELpribRxChar(Sender: TObject; Count: Integer);
+
+  private    { Private declarations }
+    procedure AuthenticationLoading(Sender: TObject);
+  public
+    { Public declarations }
+  end;
+
+var
+  fMain: TfMain;
+
+implementation
+
+uses Global, DataModule, Pssw, LOG, Graph, Event, LstDef;
+
+{$R *.dfm}
+
+procedure TfMain.FormCreate(Sender: TObject);
+var st:string;
+begin
+  MyDir:=ExtractFilePath(Application.ExeName);
+  lDate.Caption:=DateToStr(Date);
+//  fMain.Left:=515; fMain.Top:=15;
+    // проверка наличия папки DataIsp
+  st:=MyDir+'DataIsp';
+  if not DirectoryExists(st) then
+  try
+    CreateDir(st);
+  except
+    MessageDlgPos('Не удалось создать папку '+st+'. Создайте ее вручную.',mtWarning,[mbOk],0,{x}fMain.Left+250,{y}fMain.Top+350);
+    Application.Terminate;
+  end;
+    // проверка наличия файлов картинок
+  st:=MyDir+'Img';       
+  if (not FileExists(st+'\Blue.bmp'))or(not FileExists(st+'\brak.bmp'))or(not FileExists(st+'\graph.bmp'))or
+     (not FileExists(st+'\Gray.bmp'))or(not FileExists(st+'\Green.bmp'))or(not FileExists(st+'\OK.bmp'))or
+     (not FileExists(st+'\Yellow.bmp')) then begin
+    MessageDlgPos('Отсутствуют файлы, необходимые для работы программы. Обратитесь к разработчику.',mtWarning,[mbOk],0,{x}fMain.Left+250,{y}fMain.Top+350);
+    Application.Terminate;
+  end;
+ // with TButton(FindComponent('Button' + IntToStr(1))) do Glyph.LoadFromFile(st+'Img\brak.bmp');
+
+end;
+
+procedure TfMain.AuthenticationLoading(Sender: TObject);
+begin
+  lUser.Caption:=''; dm.LOG.Open; fEvent.sgLOG.RowCount:=2;
+  fPssw.Caption:='Вход в систему'; fPssw.ShowModal;
+  if nNoPsw>=3 then Application.Terminate
+  else
+    if fPssw.ModalResult<>mrOk then fMain.Close
+    else
+    begin
+      flPsw:=false; dm.spXP.Open; dm.LOG.Open;
+        //
+      AssignFile(fT,'DataT.dat'); rewrite(fT); CloseFile(fT);
+    end;
+end;
+
+procedure TfMain.FormActivate(Sender: TObject);
+var i,nDev:integer; st:string;
+begin
+  if flPsw then begin
+    for i:=1 to 4 do Dev.State[i]:=true;
+    for i:=1 to 12 do ClearComponent(i);
+      // статус приборов - On/Off
+    st:=MyDir+'DataIsp\StateDev.dat';
+    AssignFile(fDev,st);
+    try
+      if FileExists(st)
+        then
+        begin
+          reset(fDev); read(fDev,Dev);
+        end
+        else
+        begin
+          rewrite(fDev); write(fDev,Dev);
+        end;
+      CloseFile(fDev);
+    except
+      CloseFile(fDev);
+      DeleteFile(st);
+    end;
+        // восстановление неоконченных испытаний
+    dm.spXP.Close; dm.spXP.Open;
+    for i:=1 to 12 do
+    begin
+      st:=MyDir+'DataIsp\data_'+IntToStr(i)+'.dat';
+      case i of
+        1..3: nDev:=1;
+        4..6: nDev:=2;
+        7..9: nDev:=3;
+        10..12: nDev:=4;
+      end;
+      ClearComponent(i);
+      if FileExists(st) then
+      begin
+        try
+          try
+            AssignFile(fData,st); reset(fData); read(fData,Data[i]);
+          finally
+            CloseFile(fData);
+          end;
+        except
+          DeleteFile(st);
+        end;
+        try
+          if Dev.State[nDev] then
+            DataIspPos(i) // данные испытания на экран
+          else DeleteFile(st);
+        except
+          DeleteFile(st);
+        end;
+      end;
+    end;
+     // запуск опроса приборов
+    for i:=1 to 4 do
+    begin
+      flMetakon[i]:=true; // связь с Metakon
+      flELpr[i]:=true; // связь с  ELprib
+      NumAnswerMetakon[i]:=0;
+      NumAnswerELpr[i]:=0;
+    end;
+    // port COM3
+    ELprib.Open;
+    ELprib.Connected:=true;
+    TmrELprib.Enabled:=true;
+    // port COM7
+    nMetakon:=1{3}; nChanMet:=5;
+    // Metakon.Open; Metakon.Connected:=true;
+    TmrMetakon.Enabled:=true;
+    TmrIsp.Enabled:=true;
+    Tmr_XK_MK.Enabled:=true;
+      // запрос пароля
+    AuthenticationLoading(Sender);
+  end;
+end;
+
+
+procedure TfMain.tmr_XK_MKTimer(Sender: TObject);
+var q:Integer;
+begin
+  tmr_XK_MK.Interval:=60000;
+  Randomize;
+  for q:= 2 to 3 do
+  begin
+    valTemp[q,1]:=Random(2)+4;//для ХК
+    //valTemp[q,2]:=Random(2)-6;//для ХК
+    with TPanel(FindComponent('pCurXK_'+IntToStr(q))) do   Caption:=RealToStr(valTemp[q,1],5,1);
+    with TPanel(FindComponent('pCurMK_'+IntToStr(q))) do Caption:=RealToStr(valTemp[q,2],5,1);
+  end;
+
+end;
+
+procedure TfMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+var i,j:integer;
+begin
+  if flRun then
+  begin
+  CanClose:=true;
+    MessageDlgPos('Приложение уже запущено (возможно оно свернуто на панели задач): Нажмите <ОК> для продолжения работы',mtInformation,[mbOk],0,{x}fMain.Left+250,{y}fMain.Top+350);
+  end
+  else
+  begin
+    if MessageDlgPos('Вы действительно хотите закрыть программу ?',mtConfirmation,[mbYes,mbNo],0,{x}fMain.Left+250,{y}fMain.Top+350)=mrYes
+    then
+    begin
+      CanClose:=true; flAppClose:=true; flPsw:=false; TmrIsp.Enabled:=false;
+      for i:=1 to 12 do
+      begin
+        SetLength(arrXK[i],0); SetLength(arrMK[i],0); SetLength(arrW[i],0);
+      end;
+        // выключение com-порта Метаконов и ELpr
+      with Metakon do if Connected then begin Connected:=false; Close; end;
+
+      with ELprib do if Connected then begin Connected:=false; Close; end;
+      RecordLOG('Выход из системы.',false); dm.LOG.Close;
+    end
+    else
+    begin
+      CanClose:=false; flAppClose:=false;
+      if fMain.lUser.Caption='' then AuthenticationLoading(Sender);
+    end;
+  end;
+end;
+
+procedure TfMain.BtnUserClick(Sender: TObject);
+begin
+  fPssw.Caption:='Смена оператора'; fPssw.ShowModal; flPsw:=false;
+end;
+
+procedure TfMain.BtnLstXPClick(Sender: TObject);
+var st:string;
+begin
+  ShellExecute(Handle,'open','..\..\CatalogXP_ChTime.exe',nil,nil,SW_SHOW);
+end;
+
+procedure TfMain.edKodEnter(Sender: TObject);
+var st:string;
+begin
+  if flAppClose then exit;
+  with (Sender as TJvEdit) do st:=Name;
+  delete(st,1,Pos('_',st)); nPos:=StrToInt(st);
+end;
+
+procedure TfMain.edKodChange(Sender: TObject);
+var st,kod:string;
+begin
+  if nPos=0 then exit;
+  with (Sender as TJvEdit) do kod:=Text;
+  with TLabel(FindComponent('lModel_' + IntToStr(nPos))) do
+  begin
+//    Enabled:=true;
+    if Length(kod)>=3 then
+    begin
+      st:=copy(kod,1,3);
+      if dm.spXP.Locate('kod',st,[loCaseInsensitive]) then
+        Caption:=dm.spXP['Model']
+      else
+        Caption:='Модель ХП';
+    end
+    else Caption:='Модель ХП';
+  end;
+end;
+
+procedure TfMain.edKodKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+var kod,oldKod:string; n:integer; tm:TDateTime; hh,mm,ss,ms:word;
+begin
+  if Key=VK_RETURN then
+  begin
+    with TLabel(FindComponent('lChTm_'+IntToStr(nPos))) do  Visible:=false;
+    with TJvEdit(FindComponent('edKod_' + IntToStr(nPos))) do kod:=copy(Text,1,3);
+    if (kod='') then Exit;
+    if (kod='')and(StatePos[nPos]=0) then
+    begin
+      ClearComponent(nPos);
+      prEditModel:=false; curKod:='';
+      exit;
+    end;
+    oldKod:=copy(curKod,1,3);
+    if oldKod=kod then
+    begin // код модели не меняется
+      with TJvEdit(FindComponent('edKod_'+IntToStr(nPos))) do begin Color:=clWindow; ReadOnly:=true; end;
+       prEditModel:=false;
+//       if StatePos[nPos]>0 then DataIspPos(nPos);
+      exit;
+    end
+    else
+    begin // код модели поменялся или новый
+      DataInRecords(nPos);
+      flParams[nPos]:=false; dm.spXP.Close; dm.spXP.Open;
+        // поиск ХП в базе
+//    if flParams[nPos] then exit;
+      if dm.spXP.Locate('kod',kod,[loCaseInsensitive]) then
+      begin
+        ParamsXP(nPos,true);
+        if flParams[nPos] then
+        begin
+          if TypeXP[nPos]='ак' then
+          begin
+            MessageDlgPos('Холодильники Камаз не испытываются!',mtWarning,[mbOk],0,{x}fMain.Left+250,{y}fMain.Top+350);
+            if prEditModel then
+               ReturnPrevCode
+            else
+               ClearComponent(nPos);
+            exit;
+          end;
+          with TJvEdit(FindComponent('edKod_'+IntToStr(nPos))) do begin Color:=clWindow; ReadOnly:=true; Data[nPos].kodXP:=Text; end;
+         //if prEditModel then DataIspPos(nPos);
+          prEditModel:=false;
+            // кол-во включений компрессора для всех ХП кроме FNF
+          if (chMetod[nPos]<>'FnF')and(flOnCmp[nPos])and(numOnCmp[nPos]=0) then Inc(numOnCmp[nPos]);
+            // Full No Frost
+          if (chMetod[nPos]='FnF')and(flOnCmp[nPos]) then
+          begin
+            if numOnCmp[nPos]>0 then
+            begin
+              numOnCmp[nPos]:=numOnCmp[nPos]-1;
+              flWork1[nPos]:=true; tmOnWork1[nPos]:=tmStart[nPos]; //Now;
+            end;
+          end;
+
+           // ВСТАВКА
+          tm:=Now-tmStart[nPos]; DecodeTime(tm,hh,mm,ss,ms); mmCur[nPos]:=60*hh+mm;
+          if (prEditModel)and
+              (((not bgChTm[nPos])and(mmCur[nPos]>TimeIsp[nPos]-CheckTime[nPos,1]))or
+              ((bgChTm[nPos])and(mmCur[nPos]>1))) then
+          begin
+            ReturnPrevCode;
+            MessageDlgPos('РќРµР»СЊР·СЏ РёР·РјРµРЅРёС‚СЊ РєРѕРґ - РїСЂРѕРїСѓС‰РµРЅРѕ РЅР°С‡Р°Р»Рѕ РєРѕРЅС‚СЂРѕР»СЊРЅРѕРіРѕ РІСЂРµРјРµРЅРё!',mtWarning,[mbOk],0,fMain.Left+250,fMain.Top+350);
+            exit;
+          end;
+            // РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ "Рљ"
+          with TLabel(FindComponent('lChTm_'+IntToStr(nPos))) do
+            if ((not bgChTm[nPos])and(mmCur[nPos]>=TimeIsp[nPos]-CheckTime[nPos,1]))or
+               ((bgChTm[nPos])and(mmCur[nPos]<=CheckTime[nPos,1])) then Visible:=true else Visible:=false;
+
+            // Tokr Рё СЂР°СЃС…РѕРґ СЌ/СЌ, РµСЃР»Рё РЅР°С‡Р°Р»Рѕ РєРѕРЅС‚СЂРѕР»СЊРЅРѕРіРѕ РІСЂРµРјРµРЅРё
+          if (bgChTm[nPos])and(bgnTokr[nPos]=0) then begin
+            bgnTokr[nPos]:=Tokr; TmrPerW[nPos,1]:=Now; TmrPerW[nPos,2]:=TmrPerW[nPos,1]; curWch[nPos]:=0;
+          end;
+          if not bgChTm[nPos] then begin
+            if mmCur[nPos]<TimeIsp[nPos]-CheckTime[nPos,1] then begin
+              bgnTokr[nPos]:=0; curWch[nPos]:=0;
+            end;
+            if mmCur[nPos]>=TimeIsp[nPos]-CheckTime[nPos,1] then begin
+              bgnTokr[nPos]:=Tokr; curWch[nPos]:=0;
+            end;
+          end;
+            // РїСЂРѕРІРµСЂРєР° РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё РѕС†РµРЅРёРІР°С‚СЊ СЂР°СЃС…РѕРґ СЌР»/СЌРЅ
+{          if (not flWch[nPos,nCheckPoint[nPos]])or((flWch[nPos,nCheckPoint[nPos]])and(bgnTokr[nPos]=0)) then begin
+            flWch[nPos,nCheckPoint[nPos]]:=true;
+            ttWch[nPos,nCheckPoint[nPos]]:=0;
+          end; }
+          prEditModel:=false;
+        end
+        else // если не хватает каких-то данных, то возвращаем старый штрих-код  if flParams[nPos]<>0
+          if prEditModel then ReturnPrevCode;
+      end
+      else
+      begin // if dm.spXP.Locate('kod',kod,[loCaseInsensitive])
+        MessageDlgPos('В перечне отсутствует ХП с указанным кодом.',mtWarning,[mbOk],0,{x}fMain.Left+250,{y}fMain.Top+350);
+        if prEditModel then ReturnPrevCode;
+      end;
+    end;
+  end;
+end;
+
+
+
+procedure TfMain.TmrIspTimer(Sender: TObject);
+var i,j,n,k,nPoint:integer; tm:TDateTime; hh,mm,ss,ms:Word; T:real; flOkr:boolean;
+  stateBlockXK,stateBlockMK,flReadOnly: boolean; st,sth:string;
+
+begin
+  lTime.Caption:=TimeToStr(Time);
+  for i:=1 to 12 do
+  begin
+      //*************************************************************************************
+      //**********************************   Состояние 0   **********************************
+      //*************************************************************************************
+    if StatePos[i]=0 then
+    begin // место не используется
+      with TJvXPButton(FindComponent('BtnRes_' + IntToStr(i))) do if Enabled then continue;
+       // проверка подключения ХП
+      if valW[i]>=UstW then
+      begin
+        if NumVal[i]<3 then
+        begin
+          Inc(NumVal[i]);
+          SetLength(arrW[i],NumVal[i]);
+          arrW[i,NumVal[i]-1]:=valW[i];
+        end;
+      end
+      else //not (valW[i]>=UstW)
+      begin
+        NumVal[i]:=0; SetLength(arrW[i],0);
+      end;
+       // если подряд 3 значения больше уставки - копмрессор включился
+      if NumVal[i]=3 then
+      begin
+        if not flParams[i] then
+        begin
+          with TJvEdit(FindComponent('edKod_'+IntToStr(i))) do begin Enabled:=true; Color:=clYellow; end;
+        end;
+        with TLabel(FindComponent('lModel_'+IntToStr(i))) do Enabled:=true;
+        with TJvXPButton(FindComponent('BtnState_' + IntToStr(i))) do begin Enabled:=true; Glyph.LoadFromFile(MyDir+'Img\Green.bmp'); end;
+        with TPanel(FindComponent('pCycl_'+IntToStr(i))) do Caption:='0';
+         //
+        StatePos[i]:=1;
+        flOnCmp[i]:=true;
+        Inc(numOnCmp[i]);
+        tmStart[i]:=Now;
+        bgnTokr[i]:=Tokr;
+        flWork1[i]:=true; tmOnWork1[nPos]:=tmStart[i]; // необходимо, если будет FNF
+          // для расхода э/эн
+        TmrPerW[i,1]:=Now; TmrPerW[i,2]:=TmrPerW[i,1];
+          //
+        NumVal[i]:=0; WriteDataInArr(i); WriteDataInFile(i);  // запись значений мощности и температур в массивы и в файл
+      end;
+    end
+    else
+    begin //место используется - идет испытание
+        // вывод на экран температуры  (хк,мк,хм,мм,хх)
+        {
+      if (TypeXP[i]='хк')or(TypeXP[i]='хм')or(TypeXP[i]='мм')or(TypeXP[i]='хх')or(TypeXP[i]='') then
+        with TPanel(FindComponent('pCurXK_'+IntToStr(i))) do   Caption:=RealToStr(valTemp[i,1],5,1);
+      if (TypeXP[i]='мк')or(TypeXP[i]='хм')or(TypeXP[i]='мм')or(TypeXP[i]='хх')or(TypeXP[i]='') then
+        with TPanel(FindComponent('pCurMK_'+IntToStr(i))) do Caption:=RealToStr(valTemp[i,2],5,1);
+        }
+      RaschetWch(i); // текущий расход эл/эн
+      //*************************************************************************************
+      //**********************************   Состояние 3   **********************************
+      //*************************************************************************************
+      if StatePos[i]=3 then continue;
+      //*************************************************************************************
+      //**********************************   Состояние 2   **********************************
+      //*************************************************************************************
+      // если ожидаем данных по откл.,мощности нагревателя, блокам и т.д.
+      if StatePos[i]=2 then
+      begin
+        // контроль отключения м/к после окончания времени испытания
+        if (numOffCmp[i]=0){and(chOffCmp[i])} then
+        begin
+          if valW[i]<UstW then Inc(numOff[i]) else numOff[i]:=0;
+          if numOff[i]=3 then
+          begin
+            Inc(numOffCmp[i]);
+            with TPanel(FindComponent('pCycl_'+IntToStr(i))) do Caption:=IntToStr(numOffCmp[i]);
+            wCmp[i]:=true; ttCmp[i]:=true; TimeOffCmp[i]:=Now-tmStart[i]; // время 1-го отключения компрессора
+            with TImage(FindComponent('ImgNoOff_'+IntToStr(i))) do Visible:=false;
+          end;
+        end;
+          // контроль наличия всех параметров
+        stateBlockXK:=true; stateBlockMK:=true;
+        nPoint:=definePoint(i);
+        for k:=1 to nPoint do
+        begin
+          stateBlockXK:=stateBlockXK and flBlockXK[i,k];
+          stateBlockMK:=stateBlockMK and flBlockMK[i,k];
+        end;
+        if //(TimeAllIsp[Lin,j,2]=0)or
+          ((chOffCmp[i])and(not wCmp[i]))or
+          ((chSumm[i])and(not flSumm[i]))or
+          ((chBlockXK[i])and(not stateBlockXK))or
+          ((chBlockMK[i])and(not stateBlockMK))or
+          ((chToffXK[i])and(not flToffXK[i]))or
+          ((chToffMK[i])and(not flToffMK[i]))or
+          ((chTonXK[i])and(not flTonXK[i]))or
+          ((chTonMK[i])and(not flTonMK[i]))
+        then
+        begin
+          // если не все параметры указали, то ждем
+          // если не указаны показания блоков на предыдущих контр.точках - запрашиваем их
+          if (chBlockXK[i])and(not stateBlockXK)and(flBlockXK[i,nCheckPoint[i]]) then
+          begin
+            with TJvEdit(FindComponent('EdBlockXK_'+IntToStr(i))) do flReadOnly:=ReadOnly;
+            if flReadOnly then
+            for k:=1 to nCheckPoint[i] do
+            if not flBlockXK[i,k] then
+              begin
+                // переходим на эту контр.точку
+                limitBlockXK(i,k); nPointBlock[i]:=k; // номер контр.точки для ввода данных блоков
+                // запрос на экран
+                with TLabel(FindComponent('ltBlock_'+IntToStr(i))) do Caption:=chPointToScreen(i,k,'Показания на ');
+                with TJvEdit(FindComponent('EdBlockXK_'+IntToStr(i))) do
+                begin
+                  Text:=''; Color:=clYellow; Enabled:=true; ReadOnly:=false; //SetFocus;
+                end;
+                break;
+              end;
+          end;
+        end
+        else
+        begin
+          // если tpCheck=false, то если результат годный - стоп испытание, иначе продолжаем испытание
+          if not tpCheck[i,nPointBlock[i]] then
+          begin
+            ResultIsp(i,nPointBlock[i],true);  // оценка результата промежуточного испытания
+            if ResIsp[i] then begin
+              with TJvXPButton(FindComponent('BtnState_' + IntToStr(i))) do Glyph.LoadFromFile(MyDir+'Img\Ok.bmp');
+              StatePos[i]:=3;
+            end
+            else begin
+              with TJvXPButton(FindComponent('BtnState_' + IntToStr(i))) do Glyph.LoadFromFile(MyDir+'Img\Green.bmp');
+              StatePos[i]:=1; TimeAllIsp[i]:=0;
+            end;
+          end
+          else begin
+              // все параметры получены - испытание закончено
+            ResultIsp(i,nCheckPoint[i],false);  // окончательная оценка результата испытания
+            with TJvXPButton(FindComponent('BtnState_' + IntToStr(i))) do
+              if ResIsp[i] then Glyph.LoadFromFile(MyDir+'Img\Ok.bmp') else Glyph.LoadFromFile(MyDir+'Img\brak.bmp');
+            StatePos[i]:=3;
+              // если  colPoint[i] > 1, в блоке показываем значение на конец испытания
+            curPointXK[i]:=nCheckPoint[i];
+            if nCheckPoint[i]>1 then begin
+              with TLabel(FindComponent('ltBlock_'+IntToStr(i))) do Caption:=chPointToScreen(i,nCheckPoint[i],'Показания на ');
+              if chBlockXK[i] then begin
+                limitBlockXK(i,nCheckPoint[i]);
+                with TUpDown(FindComponent('UpDwnXK'+IntToStr(i))) do Enabled:=true;
+                with TJvEdit(FindComponent('EdBlockXK_'+IntToStr(i))) do begin
+                  Text:= RealToStr(ttBlockXK[i,nCheckPoint[i]],5,1);
+                  if resBlockXK[i,colPoint[i]] then Color:=$00ACF471 else Color:=$00947DEC;
+                end;
+              end;
+              if chBlockMK[i] then begin
+                limitBlockMK(i,nCheckPoint[i]);
+                with TUpDown(FindComponent('UpDwnMK'+IntToStr(i))) do Enabled:=true;
+                with TJvEdit(FindComponent('EdBlockMK_'+IntToStr(i))) do begin
+                  Text:= RealToStr(ttBlockMK[i,nCheckPoint[i]],5,1);
+                  if resBlockMK[i,colPoint[i]] then Color:=$00ACF471 else Color:=$00947DEC;
+                end;
+              end;
+            end;
+          end;
+        end;
+        WriteDataInFile(i); // запись значений мощности и температур в массивы и в файл
+      end;
+      //*************************************************************************************
+      //**********************************   Состояние 1   **********************************
+      //*************************************************************************************
+      // если время испытания не истекло
+      if StatePos[i]=1 then
+      begin
+        //-- время испытания --
+        tm:=Now-tmStart[i]; DecodeTime(tm,hh,mm,ss,ms); mmCur[i]:=60*hh+mm;
+        if TimeIsp[i]>200 then
+        begin
+          hh:=trunc(mmCur[i]/60); mm:=mmCur[i] - hh*60; sth:=IntToStr(hh);
+          if Length(sth)=1 then sth:='0'+sth; st:=sth+':'; sth:=IntToStr(mm);
+          if Length(sth)=1 then sth:='0'+sth; st:=st+sth;
+        end
+        else st:=IntToStr(mmCur[i]);
+        with TPanel(FindComponent('pCurTime_'+IntToStr(i))) do Caption:=st;
+        //-- запись значений мощности и температур в массивы и в файл --
+        WriteDataInArr(i);
+        WriteDataInFile(i);
+
+        // --((Состояние 1)+(вариант 1/2: модель еще не выбрана))--
+        if not flParams[i] then
+        begin
+          // проверка включения компрессора
+          if (numOnCmp[i]=numOffCmp[i])and((arrW[i,NumVal[i]-1]-arrW[i,NumVal[i]-2])>UstW) then
+          begin
+            Inc(numOnCmp[i]); // кол-во включений компрессора
+            with TJvXPButton(FindComponent('BtnState_' + IntToStr(i))) do Glyph.LoadFromFile(MyDir+'Img\Green.bmp');
+          end;
+            // проверка отключения компрессора
+          if (numOnCmp[i]>numOffCmp[i])and(arrW[i,NumVal[i]-1]<UstW)and(arrW[i,NumVal[i]-2]<UstW) then
+          begin
+            Inc(numOffCmp[i]);
+            with TPanel(FindComponent('pCycl_'+IntToStr(i))) do Caption:=IntToStr(numOffCmp[i]);
+//             with TJvXPButton(FindComponent('JvXPButton' + IntToStr(1))) do Glyph.LoadFromFile(MyDir+'Img\Yellow.bmp');
+            with TJvXPButton(FindComponent('BtnState_' + IntToStr(i))) do Glyph.LoadFromFile(MyDir+'Img\Yellow.bmp');
+          end;
+          continue;
+        end;
+         // --((Состояние 1)+(вариант 2/2: модель уже  выбрана))--
+         //показываем К (значок контрольного времени)----Его можем показать если пользователь ввел код ХП
+        if (bgChTm[nPos]) then
+        begin
+          if (dm.spXP['Method']='End')then
+          begin
+              if mmCur[nPos]<=CheckTime[nPos,nCheckPoint[nPos]] then
+              begin  //ситуация 1   "K"
+                with TLabel(FindComponent('lChTm_'+IntToStr(nPos))) do  Visible:=true;
+              end
+              else
+              begin //ситуация 2   notK
+                with TLabel(FindComponent('lChTm_'+IntToStr(nPos))) do  Visible:=false;
+              end;
+          end;
+          if (dm.spXP['Method']='Off')then
+          begin
+            if  numOffCmp[nPos]=0 then
+               begin
+                 if mmCur[nPos]<=CheckTime[nPos,nCheckPoint[nPos]] then
+                 begin  //ситуация 1 "K"
+                  with TLabel(FindComponent('lChTm_'+IntToStr(nPos))) do  Visible:=true;
+                 end
+                 else
+                 begin //ситуация 2   notK
+                   with TLabel(FindComponent('lChTm_'+IntToStr(nPos))) do  Visible:=false;
+                 end;
+               end
+            else
+            begin //ситуация 3
+              with TLabel(FindComponent('lChTm_'+IntToStr(nPos))) do  Visible:=false;
+            end;
+          end;
+        end
+        else  //not (bgChTm[nPos])
+        begin
+          if (dm.spXP['Method']='End')then
+          begin
+               if (mmCur[nPos]>(TimeIsp[nPos]-CheckTime[nPos,nCheckPoint[nPos]]))and (mmCur[nPos]<(TimeIsp[nPos]))  then   //ситуация 5
+               begin
+                 with TLabel(FindComponent('lChTm_'+IntToStr(nPos))) do  Visible:=true;
+               end;
+          end
+          else  //if (dm.spXP['Method']<>'End')
+          begin
+            if  numOffCmp[nPos]=0 then
+            begin
+              if (mmCur[nPos]>(TimeIsp[nPos]-CheckTime[nPos,nCheckPoint[nPos]]))and (mmCur[nPos]<(TimeIsp[nPos]))  then   //ситуация 5
+              begin
+                 with TLabel(FindComponent('lChTm_'+IntToStr(nPos))) do  Visible:=true;
+              end;
+            end
+            else //numOffCmp[nPos]<>0
+            begin
+              with TLabel(FindComponent('lChTm_'+IntToStr(nPos))) do  Visible:=false;//10
+            end;
+          end;
+        end;
+
+
+        // модель выбрана
+        // Токр в начале контрольного времени
+        //сюда вроде вообще никогда не попадает
+        if ((bgChTm[i])or((not bgChTm[i])and(mmCur[i]=TimeIsp[i]-CheckTime[i,nCheckPoint[i]])))  and   (bgnTokr[i]=0)
+        then
+        begin
+          bgnTokr[i]:=Tokr;
+          bgnWch[i]:=curWch[i];
+          with TLabel(FindComponent('lChTm_'+IntToStr(i))) do Visible:=true;
+        end;
+          // расход эл/эн ХП
+{        if (bgnTokr[i]<>0)and(endTokr[i,nCheckPoint[i]]=0) then begin  // если идет контрольное время
+          RaschetWch(i,nCheckPoint[i]); // расчет эл/эн
+        end; }
+        // -- определение оттайки full no frost
+        DefinedOttaika(i);
+
+        // -- контроль первого включения и всех последующих включений компрессора
+        if ((not flOnCmp[i])or(numOnCmp[i]=numOffCmp[i]))and
+            ((chMetod[i]<>'FnF')or((chMetod[i]='FnF')and(flWork2[i])))and
+              ((arrW[i,NumVal[i]-1]-arrW[i,NumVal[i]-3])>UstW)
+        then
+        begin
+          if (numOnCmp[i]=numOffCmp[i])and((chMetod[i]<>'FnF')or((chMetod[i]='FnF')and(flWork2[i])))and
+             ((arrW[i,NumVal[i]-1]-arrW[i,NumVal[i]-3])>UstW)
+          then
+          begin
+            Inc(numOnCmp[i]); // кол-во включений компрессора
+            with TJvXPButton(FindComponent('BtnState_' + IntToStr(i))) do Glyph.LoadFromFile(MyDir+'Img\Green.bmp');
+          end;
+        end;
+
+        // -- контроль включения/отключения компрессора и подсчет циклов
+        if NumVal[i]>2 then
+        begin
+            // проверка отключения компрессора
+          if (numOnCmp[i]>numOffCmp[i])and
+             ((chMetod[i]<>'FnF')or((chMetod[i]='FnF')and(flWork2[i])))and
+             ((arrW[i,NumVal[i]-3]-arrW[i,NumVal[i]-1])>UstW)
+          then
+          begin
+               // дополнительная проверка отключения - не учитывать скачок напряжения
+            if (arrW[i,NumVal[i]-1]<UstW)and(arrW[i,NumVal[i]-2]<UstW) then
+            begin
+              Inc(numOffCmp[i]);
+              with TPanel(FindComponent('pCycl_'+IntToStr(i))) do Caption:=IntToStr(numOffCmp[i]);
+              with TJvXPButton(FindComponent('BtnState_' + IntToStr(i))) do Glyph.LoadFromFile(MyDir+'Img\Yellow.bmp');
+
+               //**************** Состояние 1 ****************  первое отключение компрессора ***********
+              if numOffCmp[i]=1 then
+              begin
+                wCmp[i]:=true; ttCmp[i]:=true; TimeOffCmp[i]:=Now-tmStart[i];
+                //**************** Состояние 1 ****************  первое отключение компрессора *****метод энд*****
+                if chMetod[i]='End' then
+                begin // сохраняем только мощность ХП
+                  if flW[i,nCheckPoint[i]] then
+                  begin
+                    ttW[i,nCheckPoint[i]]:=arrW[i,NumVal[i]-3]; nChW[i,nCheckPoint[i]]:=NumVal[i]-3;
+                    CheckParamWatt(i,nCheckPoint[i]); // оценка мощности ХП
+                  end;
+                end
+                //**************** Состояние 1 ****************  первое отключение компрессора *****метод НЕ энд*****
+                else // сохраняем все параметры
+                if endTokr[i,nCheckPoint[i]]=0 then
+                begin // если параметры еще не сохранялись
+                  endTokr[i,nCheckPoint[i]]:=Tokr;
+                  SaveParamIsp(i); // при первом отключении сохраняем результаты
+                  ParamIspInScreen(i,nCheckPoint[i]); // вывод параметров испытаний на экран
+                end;
+              end;
+            end;
+          end;
+        end;
+
+          // Токр в конце контрольного времени, если начало контр.времени совпадает с началом испытания
+          // и не было отключения компрессора
+        if (((bgChTm[i])and(mmCur[i]=CheckTime[i,nCheckPoint[i]])and(not flSavePar[i,nCheckPoint[i]]))or
+           ((not bgChTm[i])and(mmCur[i]=TimeIsp[i])))
+        then
+        begin
+          with TLabel(FindComponent('lChTm_'+IntToStr(i))) do Visible:=false;
+          if not flSavePar[i,nCheckPoint[i]] then
+          begin
+            endTokr[i,nCheckPoint[i]]:=Tokr;
+            SaveParamIsp(i); // сохранение контрольных параметров
+            ParamIspInScreen(i,nCheckPoint[i]); // вывод параметров испытаний на экран
+          end;
+            // расход эл/эн ХП
+          if flWch[i,nCheckPoint[i]] then    
+          begin
+            k:=nCheckPoint[i];
+            ttWch[i,nCheckPoint[i]]:=curWch[i]-bgnWch[i];
+          end
+          else
+          begin
+            for j:=nCheckPoint[i] downto 1 do
+              if flWch[i,j] then begin k:=j; break; end;
+          end;
+          if flWch[i,k] then CheckParamWch(i,k);
+            // переход на следующую контрольную точку
+          dm.spXP.Close; dm.spXP.open;
+          dm.spXP.Locate('kod',KodXP[i],[loCaseInsensitive]);
+          dm.checkTime.Close; dm.checkTime.Open; dm.checkTime.RecNo:=nCheckPoint[i];
+          if dm.checkTime.RecordCount>nCheckPoint[i] then
+          begin
+              // tpCheck=false - бракованный рез-т не надо учитывать
+            if not tpCheck[i,nCheckPoint[i]] then
+            begin
+                // оценка результата на промежуточной контрольной точке без оценки блоков
+              ResultChPoinTempWtWtch(i,nCheckPoint[i],true);
+                // если рез-т хороший - переход к вводу блоков
+              if ResIsp[i] then
+              begin
+                with TJvXPButton(FindComponent('BtnState_' + IntToStr(i))) do Glyph.LoadFromFile(MyDir+'Img\Blue.bmp');
+                TimeAllIsp[i]:=Now-tmStart[i];
+                StatePos[i]:=2;
+              end
+              else
+              begin
+                  // если рез-т бракованный - показания блоков не запрашиваем - переходим к следующей контр.точке
+                flBlockXK[i,nCheckPoint[i]]:=true; flBlockMK[i,nCheckPoint[i]]:=true;
+                StatePos[i]:=1;
+                  // переход на след.контр.точку
+                nPointBlock[i]:=nCheckPoint[i]; // текущий номер контр.точки для ввода данных блоков
+                nCheckPoint[i]:=nCheckPoint[i]+1; // след.контр.точка
+                dm.checkTime.RecNo:=nCheckPoint[i]; CheckTime[i,nCheckPoint[i]]:=dm.checkTime['chTime'];
+                with TLabel(FindComponent('lchPoint'+IntToStr(i))) do Caption:=chPointToScreen(i,nCheckPoint[i],'K:');
+                if (dm.qspPSI['Wtch']=NULL)
+                then flWch[i,nCheckPoint[i]]:=false
+                else flWch[i,nCheckPoint[i]]:=true;
+                continue;
+              end
+            end;
+              // делаем доступными поля по блокам
+            if (chBlockMK[i])or(chBlockXK[i]) then
+            begin
+              with TLabel(FindComponent('ltBlock_'+IntToStr(i))) do Caption:=chPointToScreen(i,nCheckPoint[i],'Показания на ');
+              if chBlockMK[i] then
+              begin
+                TempBlockMK[i,nCheckPoint[i]]:=valTemp[i,2];
+                with TJvEdit(FindComponent('EdBlockMK_'+IntToStr(i))) do
+                begin
+                  Text:=''; Color:=clYellow; Enabled:=true; ReadOnly:=false; //SetFocus;
+                end;
+              end;
+              if chBlockXK[i] then
+              begin
+                TempBlockXK[i,nCheckPoint[i]]:=valTemp[i,1];
+                with TJvEdit(FindComponent('EdBlockXK_'+IntToStr(i))) do
+                begin
+                  Text:=''; Color:=clYellow; Enabled:=true; ReadOnly:=false; //SetFocus;
+                end;
+              end;
+              if chBlockMK[i] then
+              begin
+                TempBlockMK[i,nCheckPoint[i]]:=valTemp[i,1];
+                with TJvEdit(FindComponent('EdBlockMK_'+IntToStr(i))) do
+                begin
+                  Text:=''; Color:=clYellow; Enabled:=true; ReadOnly:=false; //SetFocus;
+                end;
+              end;
+              with TJvScrollBox(FindComponent('scbBlock'+IntToStr(i))) do Enabled:=true;
+            end;
+              // переход на след.контр.точку
+            nPointBlock[i]:=nCheckPoint[i]; // текущий номер контр.точки для ввода данных блоков
+            nCheckPoint[i]:=nCheckPoint[i]+1; // след.контр.точка
+            dm.checkTime.RecNo:=nCheckPoint[i]; CheckTime[i,nCheckPoint[i]]:=dm.checkTime['chTime'];
+            with TLabel(FindComponent('lchPoint'+IntToStr(i))) do Caption:=chPointToScreen(i,nCheckPoint[i],'K:'); // след.контр.точка на экран
+              // проверка - надо ли на след.контр.точке оценивать расход и мощность - пока это только на шубном
+            if (dm.qspPSI['Wtch']=NULL) then flWch[i,nCheckPoint[i]]:=false else flWch[i,nCheckPoint[i]]:=true;
+            if (dm.qspPSI['Wt']=NULL) then flW[i,nCheckPoint[i]]:=false else flW[i,nCheckPoint[i]]:=true;
+          end;
+        end;
+
+          // если испытание ХП закончено
+        if (mmCur[i]>=TimeIsp[i])or // или если за контр.вр.было отключение м/к (для RD-164), не ждать дополнительное время
+           ((bgChTm[i])and(mmCur[i]>=CheckTime[i,nCheckPoint[i]])and(numOnCmp[i]>0)and(numOffCmp[i]>0)and(TimeIsp[i]>CheckTime[i,nCheckPoint[i]]))
+        then
+        begin
+          with TJvXPButton(FindComponent('BtnState_' + IntToStr(i))) do Glyph.LoadFromFile(MyDir+'Img\Blue.bmp');
+          TimeAllIsp[i]:=Now-tmStart[i];
+          if not flSavePar[i,nCheckPoint[i]]  then
+          begin
+            endTokr[i,nCheckPoint[i]]:=Tokr;
+            SaveParamIsp(i); // сохранение контрольных параметров
+            ParamIspInScreen(i,nCheckPoint[i]); // вывод параметров испытаний на экран
+          end;
+            // расход эл/эн ХП
+          if flWch[i,nCheckPoint[i]] then
+          begin
+            k:=nCheckPoint[i];
+            ttWch[i,nCheckPoint[i]]:=curWch[i]-bgnWch[i];
+          end
+          else
+          begin
+            for j:=nCheckPoint[i] downto 1 do
+            if flWch[i,j] then begin k:=j; break; end;
+          end;
+          if flWch[i,nCheckPoint[i]] then CheckParamWch(i,nCheckPoint[i]);
+
+            // переход к ожиданию данных после окончания времени испытания
+          numOff[i]:=0; StatePos[i]:=2; nPointBlock[i]:=nCheckPoint[i];
+          if (chOffCmp[i])and(numOffCmp[i]=0) then
+            with TImage(FindComponent('ImgNoOff_'+IntToStr(i))) do Visible:=true;
+          if chSumm[i] then
+          begin // WHeat, WSumm в конце испытания
+            case i of  1..3: n:=1;  4..6: n:=2;  7..9: n:=3;  10..12: n:=4; end;
+            if not flU[n] then
+            begin
+              flU[n]:=true;// ELpribBuildRequest QuestTComPort(n,'U');
+            end;  // запрос  по напряжению
+          end;
+          //
+          if (chBlockMK[i])or(chBlockXK[i])or(chToffMK[i])or(chToffXK[i])or(chTonMK[i])or(chTonXK[i]) then begin
+            with TLabel(FindComponent('ltBlock_'+IntToStr(i))) do Caption:=chPointToScreen(i,nCheckPoint[i],'Показания на ');
+            with TJvScrollBox(FindComponent('scbBlock'+IntToStr(i))) do
+            begin
+              Enabled:=true;
+              if (chBlockMK[i])or(chBlockXK[i]) then VertScrollBar.Position:=0
+              else
+                if (chToffMK[i])or(chToffXK[i]) then VertScrollBar.Position:=65
+                else
+                  if (chTonMK[i])or(chTonXK[i]) then VertScrollBar.Position:=130;
+            end;
+          end;
+          if chBlockMK[i] then
+          begin
+            TempBlockMK[i,nCheckPoint[i]]:=valTemp[i,2];
+            with TJvEdit(FindComponent('EdBlockMK_'+IntToStr(i))) do
+            begin
+              Text:=''; Color:=clYellow; Enabled:=true; ReadOnly:=false; //SetFocus;
+            end;
+          end;
+          if chBlockXK[i] then
+          begin
+            TempBlockXK[i,nCheckPoint[i]]:=valTemp[i,1];
+            with TJvEdit(FindComponent('EdBlockXK_'+IntToStr(i))) do
+            begin
+              Text:=''; Color:=clYellow; Enabled:=true; ReadOnly:=false; //SetFocus;
+            end;
+          end;
+          if chToffMK[i] then
+            with TJvEdit(FindComponent('EdToffMK_'+IntToStr(i))) do
+            begin
+              Text:=''; Color:=clYellow; Enabled:=true; ReadOnly:=false; //SetFocus;
+            end;
+          if chToffXK[i] then
+            with TJvEdit(FindComponent('EdToffXK_'+IntToStr(i))) do
+            begin
+              Text:=''; Color:=clYellow; Enabled:=true; ReadOnly:=false; //SetFocus;
+            end;
+          if chTonMK[i] then
+            with TJvEdit(FindComponent('EdTonMK_'+IntToStr(i))) do begin
+              Text:=''; Color:=clYellow; Enabled:=true; ReadOnly:=false; //SetFocus;
+            end;
+          if chTonXK[i] then
+            with TJvEdit(FindComponent('EdTonXK_'+IntToStr(i))) do begin
+              Text:=''; Color:=clYellow; Enabled:=true; ReadOnly:=false; //SetFocus;
+            end;
+        end;
+      end;
+    end;
+  end;
+end;
+
+
+procedure TfMain.ImgHClick(Sender: TObject);
+var st:string; n:integer;
+begin
+  with (Sender as TImage) do begin st:=Name; Visible:=false; end;
+  delete(st,1,Pos('_',st)); nPos:=StrToInt(st);
+    // пересчет на напряжение, отличное от 220
+  case nPos of  1..3: n:=1;  4..6: n:=2;  7..9: n:=3;  10..12: n:=4; end;
+  if vU[n]<>0 then ttWH[nPos]:=Trunc(valW[nPos]*SQR(220/vU[n]))
+  else ttWH[nPos]:=Trunc(valW[nPos]);
+
+  flSumm[nPos]:=true;
+  with TPanel(FindComponent('pCurWH_'+IntToStr(nPos))) do begin
+    Caption:=RealToStr(ttWH[nPos],5,0);
+    if(Round(ttWH[nPos])>=pmWHmin[nPos])and(Round(ttWH[nPos])<=pmWHmax[nPos]) then Color:=$00ACF471 else Color:=$00947DEC;
+  end;
+end;
+
+procedure TfMain.ppEditKodClick(Sender: TObject);
+begin
+  with TJvEdit(FindComponent('edKod_'+IntToStr(nPos))) do begin
+    if Text='' then exit
+    else begin
+        // проверка - можно ли редактировать штрих-код
+      if (StatePos[nPos]>1)or((StatePos[nPos]=1)and((flSavePar[nPos,1])or(ttW[nPos,nCheckPoint[nPos]]<>0))) then //chanche ttW[nPos,nCheckPoint[nPos]]<>0
+      begin
+        MessageDlgPos('Менять модель ХП уже нельзя!',mtWarning,[mbOk],0,{x}fMain.Left+250,{y}fMain.Top+350);
+        exit;
+      end;
+      ReadOnly:=false; Color:=clYellow; curKod:=Text;
+    end;
+  end;
+  with TLabel(FindComponent('lChTm_'+IntToStr(nPos))) do  Visible:=false;
+  prEditModel:=true;
+end;
+
+procedure TfMain.TmrMetakonTimer(Sender: TObject);
+begin
+  {
+  TmrMetakon.Enabled:=false;
+  if NumAnswerMetakon[nMetakon]=1 then begin
+    QuestMetakonTemp(nMetakon,nChanMet); // повторный опрос неответившего канала Метакона
+    exit;
+  end;
+    //
+  if (nMetakon=4)and(nChanMet=5) then begin nMetakon:=1; nChanMet:=0; end
+  else
+    if nChanMet<5 then nChanMet:=nChanMet+1
+    else begin nMetakon:=nMetakon+1; nChanMet:=0; end;
+    //
+  if Dev.State[nMetakon] then
+    QuestMetakonTemp(nMetakon,nChanMet) // опрос Метакона
+  else TmrMetakon.Enabled:=true; // переход к следующему Метакону
+  }
+end;
+
+procedure TfMain.MetakonTxEmpty(Sender: TObject);
+var F:TByteMetakon; Count,i,n,k:integer; vv:real; flCRC,flOK:boolean; sum:word; st:string;
+begin
+{   BytesRead:integer;
+  BytesRead:=Metakon.Read(ResponseBufferMTKN,120);
+  if BytesRead=0 then
+  begin
+    if flMetakon[nMetakon] then
+    begin
+      RecordLOG('Метаконы '+st+' не отвечают. Проверьте наличие питания.',true);
+    end;
+    flMetakon[nMetakon]:=false;
+  end;
+  if BytesRead>0 then
+  begin
+    ResponseLengthMTKN:=BytesRead;
+     MetakonCalculateCRC16(ResponseBufferMTKN,BytesRead-1);
+
+    if (ResponseBufferELpr[BytesRead-1]=CRC then //if CRC is OK
+    begin
+      flCRC:=true;  //НУ, И ВСЕ ДЕЙСТВИЯ
+    end;
+    }
+
+  Count:=38;
+  for i:=0 to 39 do F[i]:=0;
+  Metakon.Read(F,Count);
+    // проверка наличия связи с Метаконом
+  sum:=0; for i:=0 to 39 do sum:=sum+F[i];
+    //
+  case nMetakon of
+    1: st:='для позиций 1,2,3';  // 1,2,3
+    2: st:='для позиций 4,5,6';  // 4,5,6
+    3: st:='для позиций 7,8,9';  // 7,8,9
+    4: st:='для позиций 10,11,12'; // 10,11,12
+  end;
+  if sum=0 then
+  begin
+    Inc(NumAnswerMetakon[nMetakon]);
+    if NumAnswerMetakon[nMetakon]=2 then
+    begin
+      if flMetakon[nMetakon] then RecordLOG('Метаконы '+st+' не отвечают. Проверьте наличие питания на линии.',true);
+      flMetakon[nMetakon]:=false; NumAnswerMetakon[nMetakon]:=0;
+    end;
+  end
+  else
+  begin
+    if F[0]=nMetakon then begin
+      if not flMetakon[nMetakon] then RecordLOG('Связь с Метаконами  '+st+' восстановлена.',true);
+      flMetakon[nMetakon]:=true; NumAnswerMetakon[nMetakon]:=0;
+    end;
+  end;
+    // контрольная сумма ответа
+  MetakonCalculateCRC16(F,7); flCRC:=true;
+  if CRC=F[7] then//if CRC is OK
+  begin
+    if F[6]=0 then i:=F[5]
+    else
+      if F[6]=255 then i:=F[5]-256
+      else
+        if F[6]=1 then i:=256+F[5]
+        else i:=256*F[6]+F[5]-65536;
+    vv:=i/10;
+      // определение для какого ХП пришел ответ
+    case F[1] of
+      0,1:  case F[0] of 1: n:=1;  2: n:=4;  3: n:=7;  4: n:=10; end;
+      2,3:  case F[0] of 1: n:=2;  2: n:=5;  3: n:=8;  4: n:=11; end;
+      4,5:  case F[0] of 1: n:=3;  2: n:=6;  3: n:=9;  4: n:=12; end;
+    end;
+    case F[1] of // ХК или МК
+      0,2,4: k:=1;
+      1,3,5: k:=2;
+    end;
+    with TJvLED(FindComponent('ledMet' + IntToStr(numPosMet(F[0],F[1])))) do ColorOn:=$00FD64BC;
+    if Abs(vv)<100 then begin
+      valTemp[n,k]:=vv;
+      if (F[0]=1{3})and(F[1]=5)then Tokr:=vv; // если Токр - 3-й Метакон 6-й канал - место 21
+    end;
+  end
+  else begin
+    flCRC:=false;
+  end;
+  if not flAppClose then TmrMetakon.Enabled:=true;
+      // Сохранение данных для отладки
+        if (F[1]=2)or(F[1]=3) then
+        begin
+           st:=''; For i:=0 to 7 do st:=st+IntToStr(F[i])+' ';
+           try AssignFile(fT,'DataT.dat'); Append(fT);
+           if F[1]=3 then write(fT,'     ');
+           Write(fT,'  ответ: '+st+': '+RealToStr(vv,5,1));
+           If not flCRC then write(fT,' (f)') else write(fT,' (t)');
+           if F[1]=3 then writeln(fT);
+           CloseFile(fT);
+           except CloseFile(fT); end;
+        end;
+
+end;
+
+procedure TfMain.ImgNoOffClick(Sender: TObject);
+var st:string;
+begin
+  with (Sender as TImage) do begin st:=Name; Visible:=false; end;
+  delete(st,1,Pos('_',st)); nPos:=StrToInt(st);
+    //
+  Inc(numOffCmp[nPos]);
+  wCmp[nPos]:=true; ttCmp[nPos]:=false; TimeOffCmp[nPos]:=0; // время 1-го отключения компрессора
+  with TImage(FindComponent('ImgNoOff_'+IntToStr(nPos))) do Visible:=false;
+end;
+
+procedure TfMain.EdBlockEnter(Sender: TObject);
+var st,stMenu:string;
+begin
+  with (Sender as TJvEdit) do st:=Name;
+  NameBlock:=copy(st,1,Pos('_',st)-1);
+  delete(st,1,Pos('_',st)); nPos:=StrToInt(st);
+    //
+  if NameBlock='EdBlockXK' then stMenu:=' показания блока ХК';
+  if NameBlock='EdBlockMK' then stMenu:=' показания блока МК';
+  if NameBlock='EdToffXK'  then stMenu:=' температуру отключения ХК';
+  if NameBlock='EdToffMK'  then stMenu:=' температуру отключения МК';
+  if NameBlock='EdTonXK'   then stMenu:=' температуру включения ХК';
+  if NameBlock='EdTonMK'   then stMenu:=' температуру включения МК';
+  ppEdBlock.Caption:='изменить'+stMenu;
+end;
+
+procedure TfMain.EdBlockKeyPress(Sender: TObject; var Key: Char);
+begin
+  Key:=UpCase(Key);
+  if not (Key in ['0'..'9','-','.',',',#8,#46]) then Key:=#0; if Key='.' then Key:=',';
+end;
+
+procedure TfMain.EdBlockKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+var i:integer; st:string; fl:boolean;
+begin
+  if Key=VK_RETURN then
+  begin
+    with TJvEdit(FindComponent(NameBlock+'_'+IntToStr(nPos))) do
+    begin
+      if Text='' then
+      begin
+        if NameBlock='EdBlockXK' then
+        begin
+          st:='XK';
+          flBlockXK[nPos,nPointBlock[nPos]]:=false;
+        end
+        else
+        begin st:='MK';
+        flBlockMK[nPos,nPointBlock[nPos]]:=false;
+        end;
+        MessageDlgPos('Введите показания блока '+st+'!',mtWarning,[mbOk],0,{x}fMain.Left+250,{y}fMain.Top+350);
+      end;
+
+      if NameBlock='EdBlockXK' then
+      begin
+        ttBlockXK[nPos,nPointBlock[nPos]]:=StrToFloat(Text);
+        flBlockXK[nPos,nPointBlock[nPos]]:=true;
+        if not flRangeXK[nPos,nPointBlock[nPos]] then
+        begin // оценка отклонения показаний
+          resBlockXK[nPos,nPointBlock[nPos]]:=(Abs(ttBlockXK[nPos,nPointBlock[nPos]]-TempBlockXK[nPos,nPointBlock[nPos]]) <= pmDopBlXK[nPos]);
+          if resBlockXK[nPos,nPointBlock[nPos]] then Color:=$00ACF471 else Color:=$00947DEC;
+        end
+        else
+        begin // оценка показаний в диапазоне
+          resBlockXK[nPos,nPointBlock[nPos]]:=(ttBlockXK[nPos,nPointBlock[nPos]] >= pmRangeXK[nPos,nPointBlock[nPos],2]{min}) and
+                                              (ttBlockXK[nPos,nPointBlock[nPos]] <= pmRangeXK[nPos,nPointBlock[nPos],1]{max});
+          if resBlockXK[nPos,nPointBlock[nPos]] then Color:=$00ACF471 else Color:=$00947DEC;
+        end;
+      end;
+
+      if NameBlock='EdBlockMK' then
+      begin
+        ttBlockMK[nPos,nPointBlock[nPos]]:=StrToFloat(Text);
+        flBlockMK[nPos,nPointBlock[nPos]]:=true;
+        resBlockMK[nPos,nPointBlock[nPos]]:=(Abs(ttBlockMK[nPos,nPointBlock[nPos]]-TempBlockMK[nPos,nPointBlock[nPos]]) <= pmDopBlMK[nPos]);
+        if resBlockMK[nPos,nPointBlock[nPos]] then Color:=$00ACF471 else Color:=$00947DEC;
+      end;
+      ReadOnly:=true; Font.Color:=clBlack;
+    end;
+  end;
+end;
+
+procedure TfMain.EdToffKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+var i:integer; st:string; fl:boolean;
+begin
+  if Key=VK_RETURN then
+  begin
+    with TJvEdit(FindComponent(NameBlock+'_'+IntToStr(nPos))) do
+    begin
+      if Text='' then
+      begin
+        if NameBlock='EdToffXK' then
+        begin
+        st:='XK';
+        flToffXK[nPos]:=false;
+        end
+        else
+        begin st:='MK';
+        flToffMK[nPos]:=false;
+        end;
+        MessageDlgPos('Введите температуру отключения компрессора '+st+'!',mtWarning,[mbOk],0,{x}fMain.Left+250,{y}fMain.Top+350);
+      end;
+      if NameBlock='EdToffXK' then
+      begin
+        ttToffXK[nPos]:=StrToFloat(Text); flToffXK[nPos]:=true;
+        if (chToffXK[nPos])and(Abs(ttToffXK[nPos]-pmToffXK[nPos])>0.3) then Color:=$00947DEC else Color:=$00ACF471;
+      end
+      else
+      begin
+        ttToffMK[nPos]:=StrToFloat(Text); flToffMK[nPos]:=true;
+        if (chToffMK[nPos])and(Abs(ttToffMK[nPos]-pmToffMK[nPos])>0.3) then Color:=$00947DEC else Color:=$00ACF471;
+      end;
+      ReadOnly:=true; Font.Color:=clBlack; //Color:=clCream;
+    end;
+  end;
+end;
+
+procedure TfMain.EdTonKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+var i:integer; st:string; fl:boolean;
+begin
+  if Key=VK_RETURN then
+  begin
+    with TJvEdit(FindComponent(NameBlock+'_'+IntToStr(nPos))) do
+    begin
+      if Text='' then
+      begin
+        if NameBlock='EdTonXK' then
+        begin
+        st:='XK';
+        flTonXK[nPos]:=false;
+        end
+        else
+        begin
+        st:='MK';
+        flTonMK[nPos]:=false;
+        end;
+        MessageDlgPos('Введите температуру включения компрессора '+st+'!',mtWarning,[mbOk],0,{x}fMain.Left+250,{y}fMain.Top+350);
+      end;
+      if NameBlock='EdTonXK' then
+      begin
+        ttTonXK[nPos]:=StrToFloat(Text);
+        flTonXK[nPos]:=true;
+        if (chTonXK[nPos])and(Abs(ttTonXK[nPos]-pmTonXK[nPos])>0.3) then Color:=$00947DEC else Color:=$00ACF471;
+      end
+      else
+      begin
+        ttTonMK[nPos]:=StrToFloat(Text); flTonMK[nPos]:=true;
+        if (chTonMK[nPos])and(Abs(ttTonMK[nPos]-pmTonMK[nPos])>0.3) then Color:=$00947DEC else Color:=$00ACF471;
+      end;
+      ReadOnly:=true; Font.Color:=clBlack; //Color:=clCream;
+    end;
+  end;
+end;
+
+procedure TfMain.BtnStateClick(Sender: TObject);
+var st,kod:string;
+begin
+  with (Sender as TJvXPButton) do st:=Name;
+  nPos:=StrToInt(copy(st,10,Length(st)-9));
+    //
+
+  with TJvEdit(FindComponent('edKod_' + IntToStr(nPos))) do kod:=copy(Text,1,3);
+  if (kod='') then Exit;
+  if (StatePos[nPos]=3) then begin
+    if MessageDlgPos('Очистить место '+IntToStr(nPos)+'?',mtConfirmation,[mbYes,mbNo],0,{x}fMain.Left+250,{y}fMain.Top+350)=mrYes then
+    begin
+      if valW[nPos]>UstW then
+      begin
+        MessageDlgPos('Отключите ХП от сети и нажмите <OK>',mtInformation,[mbOk],0,{x}fMain.Left+250,{y}fMain.Top+350);
+        ClearComponent(nPos);
+      end
+      else ClearComponent(nPos);
+      DeleteFile(MyDir+'DataIsp\data_'+IntToStr(nPos)+'.dat');
+    end;
+  end
+  else
+    if MessageDlgPos('Вы хотите прервать испытание ХП на поз.'+IntToStr(nPos)+'?',mtConfirmation,[mbYes,mbNo],0,{x}fMain.Left+250,{y}fMain.Top+350)=mrYes then
+    begin
+      if StatePos[nPos]=0 then
+      begin
+        ClearComponent(nPos);
+        DeleteFile(MyDir+'DataIsp\data_'+IntToStr(nPos)+'.dat');
+        exit;
+      end;
+      if flParams[nPos] then
+      begin
+        StatePos[nPos]:=3;
+        TimeAllIsp[nPos]:=Now-tmStart[nPos];
+        if not flSavePar[nPos,nCheckPoint[nPos]] then begin
+          endTokr[nPos,nCheckPoint[nPos]]:=Tokr;
+          if nChW[nPos,nCheckPoint[nPos]]=0 then begin
+            ttW[nPos,nCheckPoint[nPos]]:=arrW[nPos,NumVal[nPos]-3]; nChW[nPos,nCheckPoint[nPos]]:=NumVal[nPos]-3;
+            if flW[nPos,nCheckPoint[nPos]] then CheckParamWatt(nPos,nCheckPoint[nPos]); // оценка мощности ХП
+          end;
+          SaveParamIsp(nPos); // сохранение контрольных параметров
+          ParamIspInScreen(nPos,nCheckPoint[nPos]); // вывод параметров испытаний на экран
+           // расход эл/эн ХП
+          if flWch[nPos,nCheckPoint[nPos]] then CheckParamWch(nPos,nCheckPoint[nPos]);
+        end;
+        ResultIsp(nPos,nCheckPoint[nPos],true);  // оценка результата испытания
+        if ResIsp[nPos]
+          then with TJvXPButton(FindComponent('BtnState_' + IntToStr(nPos))) do Glyph.LoadFromFile(MyDir+'Img\Ok.bmp')
+          else with TJvXPButton(FindComponent('BtnState_' + IntToStr(nPos))) do Glyph.LoadFromFile(MyDir+'Img\brak.bmp');
+        WriteDataInArr(nPos); WriteDataInFile(nPos); // запись значений мощности и температур в массивы и в файл
+      end
+      else begin
+        if valW[nPos]>UstW then begin
+           MessageDlgPos('Отключите ХП от сети и нажмите <OK>',mtInformation,[mbOk],0,{x}fMain.Left+250,{y}fMain.Top+350);
+           ClearComponent(nPos);
+        end
+        else ClearComponent(nPos);
+        DeleteFile(MyDir+'DataIsp\data_'+IntToStr(nPos)+'.dat');
+      end;
+    end;
+  pnlIsp.SetFocus;
+end;
+
+procedure TfMain.BtnResClick(Sender: TObject);
+var st:string;
+begin
+  with (Sender as TJvXPButton) do st:=Name;
+  delete(st,1,Pos('_',st)); nPos:=StrToInt(st);
+    //
+  fGraph.Show;
+end;
+
+procedure TfMain.ppEdBlockClick(Sender: TObject);
+begin
+  with TJvEdit(FindComponent(NameBlock+'_'+IntToStr(nPos))) do begin
+    Text:=''; Color:=clYellow; Enabled:=true; ReadOnly:=false; SetFocus;
+  end;
+  if NameBlock='EdBlockXK' then flBlockXK[nPos,curPointXK[nPos]]:=false;
+  if NameBlock='EdBlockMK' then flBlockMK[nPos,curPointXK[nPos]]:=false;
+  if NameBlock='EdToffXK' then flToffXK[nPos]:=false;
+  if NameBlock='EdToffMK' then flToffMK[nPos]:=false;
+  if NameBlock='EdTonXK' then flTonXK[nPos]:=false;
+  if NameBlock='EdTonMK' then flTonMK[nPos]:=false;
+    // если изменение проводится после остановки испытания
+  StatePos[nPos]:=2; nPointBlock[nPos]:=curPointXK[nPos];
+  with TJvXPButton(FindComponent('BtnState_' + IntToStr(nPos))) do Glyph.LoadFromFile(MyDir+'Img\Blue.bmp');
+end;
+
+procedure TfMain.BtnLogClick(Sender: TObject);
+begin
+  fLog.Show;
+end;
+
+procedure TfMain.BtnEventClick(Sender: TObject);
+begin
+  fEvent.Show;
+end;
+
+procedure TfMain.posContextPopup(Sender: TObject; MousePos: TPoint; var Handled: Boolean);
+var st:string; nDev:integer;
+begin
+  if flAppClose then exit;
+  with (Sender as TLabel) do st:=Name;
+  delete(st,1,3); nPos:=StrToInt(st);
+    //
+  case nPos of
+    1..3: nDev:=1;
+    4..6: nDev:=2;
+    7..9: nDev:=3;
+    10..12: nDev:=4;
+  end;
+  if Dev.State[nDev] then st:='отключить' else st:='подключить';
+  ItemOnOff.Caption:=st+' опрос приборов'; 
+end;
+
+procedure TfMain.ItemOnOffClick(Sender: TObject);
+var nDev:integer; k,i:integer; st,st1,st2:string;
+begin
+  case nPos of
+    1..3: begin nDev:=1; k:=1; st2:='1,2,3'; end; // '1,2,3'
+    4..6: begin nDev:=2; k:=4; st2:='4,5,6'; end; //'4,5,6'
+    7..9: begin nDev:=3; k:=7; st2:='7,8,9'; end; // '7,8,9'
+    10..12: begin nDev:=4; k:=10; st2:='10,11,12'; end; // '10,11,12'
+  end;
+  if Dev.State[nDev] then st1:='отключить' else st1:='подключить';
+  if MessageDlgPos('Вы хотите '+st1+' опрос позиций '+st2+'?',mtConfirmation,[mbYes,mbNo],0,{x}fMain.Left+250,{y}fMain.Top+350)=mrYes then begin
+    RecordLOG('Приборы для позиций '+st2+' '+copy(st1,1,Pos('ч',st1))+'ены оператором.',false);
+    Dev.State[nDev]:= not Dev.State[nDev];
+    flMetakon[nDev]:=true; flELpr[nDev]:=true;
+    for i:=k to k+2 do ClearComponent(i);
+      // статус приборов - On/Off
+    st:=MyDir+'DataIsp\StateDev.dat';
+    AssignFile(fDev,st);
+    try
+      rewrite(fDev); write(fDev,Dev);
+      CloseFile(fDev);
+    except
+      CloseFile(fDev);
+    end;
+  end;
+end;
+
+procedure TfMain.BtnLstDefClick(Sender: TObject);
+begin
+ dm.spDef.Open; dm.spDef.First; fLstDef.Show;
+end;
+
+procedure TfMain.AppEventsException(Sender: TObject; E: Exception);
+var Str:TStringList; StmLOG:TFileStream; st,stt,FileName,stLOG:string; i:integer;
+begin
+  Str := TStringList.Create;
+  try  // обработка исключения
+    FileName:=MyDir+'ErrPrg.log';
+    SetFileAttributes(PChar(FileName), faArchive); // снимаем защиту от изменений
+      // сохраняем информацию об ошибке
+    JclLastExceptStackListToStrings(Str, True, True, True, True); // содержимое стека
+    if not FileExists(FileName) then
+    begin
+      StmLOG := TFileStream.Create(FileName, fmCreate);
+      st:=''; for i:=1 to 50 do st:=st+'-'; st:=st+#13; StmLOG.WriteBuffer(st[1], SizeOf(st[1])*Length(st));
+      st:='СИЛ-АСИХ'+#13;; StmLOG.WriteBuffer(st[1], SizeOf(st[1])*Length(st));
+      st:='Дата создания: '+DateToStr(Date)+#13; StmLOG.WriteBuffer(st[1], SizeOf(st[1])*Length(st));
+      st:='Время создания: '+TimeToStr(Time)+#13; StmLOG.WriteBuffer(st[1], SizeOf(st[1])*Length(st));
+    end
+    else
+    begin
+      StmLOG := TFileStream.Create(FileName, fmOpenReadWrite);
+      StmLOG.Position:=StmLOG.Size;
+    end;
+    st:=''; for i:=1 to 50 do st:=st+'-'; st:=st+#13; StmLOG.WriteBuffer(st[1], SizeOf(st[1])*Length(st));
+    st:=DateToStr(Date)+'  '+TimeToStr(Time)+#13; StmLOG.WriteBuffer(st[1], SizeOf(st[1])*Length(st));
+    st:='ClassName: '+E.ClassName+#13; StmLOG.WriteBuffer(st[1], SizeOf(st[1])*Length(st));
+    st:='Message: '+E.Message+#13; StmLOG.WriteBuffer(st[1], SizeOf(st[1])*Length(st));
+    st:='StackList: '+#13; StmLOG.WriteBuffer(st[1], SizeOf(st[1])*Length(st));
+      //
+    stt:=Str.Text; stLOG:='';
+    while stt<>'' do begin
+      st:=copy(stt,Pos('(Line',stt),Pos('+',stt)-Pos('(Line',stt)); delete(stt,1,Pos(#13#10,stt)+1);
+      if Pos('Line',st)<>0 then begin st:=st+')'; stLOG:=stLOG+st; end;
+    end;
+    stt:=Str.Text;
+    while stt<>'' do begin
+      st:=copy(stt,1,Pos(#13#10,stt)+1); delete(stt,1,Pos(#13#10,stt)+1);
+      if Pos('Line',st)<>0 then StmLOG.WriteBuffer(st[1], SizeOf(st[1])*Length(st));
+    end;
+      //
+    StmLOG.Free;
+    SetFileAttributes(PChar(FileName), SysUtils.faReadOnly); // атрибут - только для чтения
+      //
+    MessageDlgPos('В программе обнаружена ошибка! Программа будет закрыта.'+#13+'Обратитесь к разработчику.',mtError,[mbOk],0,{x}fMain.Left+40,{y}fMain.Top+350);
+      //
+  finally
+    FreeAndNil(Str);
+    TmrIsp.Enabled:=false;
+    ELprib.Connected:=false;
+    Metakon.Connected:=false;
+
+      // сохранение в БД
+    dm.LOG.Open;
+    dm.LOG.Append;
+    dm.LOG['rDate']:=Date;
+    dm.LOG['rTime']:=Time;
+    dm.LOG['rRec']:='выход из программы после ошибки';
+    dm.LOG['rUser']:=fMain.lUser.Caption;
+    dm.LOG.CheckBrowseMode; dm.LOG.Close; dm.LOG.Open;
+
+    Application.Terminate;
+  end;
+end;
+
+procedure TfMain.UpDwnXKClick(Sender: TObject; Button: TUDBtnType);
+var pos:integer; st:string;
+begin
+  with (Sender as TUpDown) do st:=Name;
+  delete(st,1,7); pos:=StrToInt(st);
+    //
+  if (Button = btNext) and (curPointXK[pos]>1) then curPointXK[pos]:=curPointXK[pos]-1;
+  if (Button = btPrev) and (curPointXK[pos]<nCheckPoint[pos]) then curPointXK[pos]:=curPointXK[pos]+1;
+    // показываем эту контр.точку
+  limitBlockXK(pos,curPointXK[pos]); nPointBlock[pos]:=curPointXK[pos]; // номер контр.точки для ввода данных блоков
+  with TLabel(FindComponent('ltBlock_'+IntToStr(pos))) do Caption:=chPointToScreen(pos,curPointXK[pos],'Показания на ');
+  with TJvEdit(FindComponent('EdBlockXK_'+IntToStr(pos))) do begin
+    Text:=RealToStr(ttBlockXK[pos,curPointXK[pos]],5,1);
+    if resBlockXK[pos,curPointXK[pos]] then Color:=$00ACF471 else Color:=$00947DEC;
+  end;
+end;
+
+procedure TfMain.UpDwnMKClick(Sender: TObject; Button: TUDBtnType);
+var pos:integer; st:string;
+begin
+  with (Sender as TUpDown) do st:=Name;
+  delete(st,1,7); pos:=StrToInt(st);
+    //
+  if (Button = btNext) and (curPointMK[pos]>1) then curPointMK[pos]:=curPointMK[pos]-1;
+  if (Button = btPrev) and (curPointMK[pos]<nCheckPoint[pos]) then curPointMK[pos]:=curPointMK[pos]+1;
+    // показываем эту контр.точку
+  limitBlockMK(pos,curPointMK[pos]); nPointBlock[pos]:=curPointXK[pos]; // номер контр.точки для ввода данных блоков
+  with TLabel(FindComponent('ltBlock_'+IntToStr(pos))) do Caption:=chPointToScreen(pos,curPointMK[pos],'Показания на ');
+  with TJvEdit(FindComponent('EdBlockMK_'+IntToStr(pos))) do begin
+    Text:=RealToStr(ttBlockMK[pos,curPointMK[pos]],5,1);
+    if resBlockMK[pos,curPointMK[pos]] then Color:=$00ACF471 else Color:=$00947DEC;
+  end;
+end;
+
+
+procedure TfMain.ELpribTxEmpty(Sender: TObject);
+type SingleBytes = array [0..3] of byte;//массив из 4-х байтов
+SingleBytes2 = array [0..3] of byte;
+var Count,i,j,BytesRead,ps,z:integer;
+  st:string;
+  S:single;//32-битное число с плавающей запятой
+begin
+
+  FillChar( ResponseBufferELpr,SizeOf(ResponseBufferELpr),0);
+  BytesRead:=ELprib.Read(ResponseBufferELpr,120);
+  case nELpr of
+    1: st:='для позиций 1,2,3';  // 1,2,3
+    2: st:='для позиций 4,5,6';  // 4,5,6
+    3: st:='для позиций 7,8,9';  // 7,8,9
+    4: st:='для позиций 10,11,12'; // 10,11,12
+  end;
+  //
+  if BytesRead=0 then
+  begin
+    {
+    Inc(NumAnswerELpr[nELpr]);
+    if NumAnswerELpr[nELpr]=2 then
+      begin
+        }
+       if flELpr[nELpr] then RecordLOG('Измерители мощности '+st+' не отвечают. Проверьте наличие питания на линии.',true);
+       flELpr[nELpr]:=false;
+        //NumAnswerELpr[nELpr]:=0;
+     // end;
+
+  end
+  else
+  begin
+    if ResponseBufferELpr[0]=nELpr then
+    begin
+      if not flELpr[nELpr] then RecordLOG('Связь с измерителями мощности'+st+'восстановлена.',true);
+      flELpr[nELpr]:=true;
+      //NumAnswerELpr[nELpr]:=0;
+    end;
+  end;
+  //
+  if BytesRead>0 then           
+  begin
+    ResponseLengthELpr:=BytesRead;
+    ELpribCalculateCRC16(ResponseBufferELpr,BytesRead-2);
+    if (ResponseBufferELpr[BytesRead-2]=Lo(crcELpr)) and (ResponseBufferELpr[BytesRead-1]=Hi(crcELpr))then //if CRC is OK
+    begin
+    case ResponseBufferELpr[0] of
+      1: for i:=1 to 3 do with fMain do with TJvLED(FindComponent('ledEL'+IntToStr(i))) do ColorOn:=clAqua;
+      2: for i:=4 to 6 do with fMain do with TJvLED(FindComponent('ledEL'+IntToStr(i))) do ColorOn:=clAqua;
+      3: for i:=7 to 9 do with fMain do with TJvLED(FindComponent('ledEL'+IntToStr(i))) do ColorOn:=clAqua;
+      4: for i:=10 to 11 do with fMain do with TJvLED(FindComponent('ledEL'+IntToStr(i))) do ColorOn:=clAqua;
+    end;
+      if  BytesRead=105  then
+      begin
+        for j:= 0 to 2 do
+        begin
+          SingleBytes(S)[0] := ResponseBufferELpr[4+j*4];
+          SingleBytes(S)[1] := ResponseBufferELpr[3+j*4];
+          SingleBytes(S)[2] := ResponseBufferELpr[6+j*4];
+          SingleBytes(S)[3] := ResponseBufferELpr[5+j*4];
+          case ResponseBufferELpr[0] of 1: ps:=0; 2:ps:=3; 3:ps:=6; 4:ps:=9; end;
+          if (j=1) or (j=2) then s:=s+30;
+          with TPanel(FindComponent('pCurW_' + IntToStr(j+1+ps))) do Caption:=RealToStr(s,5,1);//FloatToStr(S);
+
+          valW[j+1+ps]:=s;
+        end;
+        begin
+
+          SingleBytes(S)[0] := ResponseBufferELpr[98];
+          SingleBytes(S)[1] := ResponseBufferELpr[97];
+          SingleBytes(S)[2] := ResponseBufferELpr[100];
+          SingleBytes(S)[3] := ResponseBufferELpr[99];
+          pTokr.Caption:=RealToStr(s,5,1);//FloatToStr(S);
+          Tokr:=s;
+
+          {
+          SingleBytes2(S)[0] := ResponseBufferELpr[98];
+          SingleBytes2(S)[1] := ResponseBufferELpr[97];
+          SingleBytes2(S)[2] := ResponseBufferELpr[100];
+          SingleBytes2(S)[3] := ResponseBufferELpr[99];
+          S:=PSingle(@SingleBytes2(S)[0])^;
+          S:=S+30;
+          pTokr.Caption:=RealToStr(s,5,1);//FloatToStr(S);
+          Tokr:=s;
+          }
+        end;
+      end;
+    end;
+  end;
+
+{
+procedure TfMain.ELpribTxEmpty(Sender: TObject);
+type SingleBytes = array [0..3] of byte;
+SingleBytes2 = array [0..3] of byte;
+var Count,i,j,LenCRC,LenStr,BytesRead,ps:integer;
+  st:string;
+  S:single;
+begin
+ // fMain.ELprib.SetRTS(False);//off????
+  BytesRead:=ELprib.Read(ResponseBufferELpr,120);
+  if BytesRead=0 then
+  begin
+    //if flELpr[nELpr] then
+    //begin
+      RecordLOG('ELpr '+st+' не отвечают. Проверьте наличие питания.',true);
+   // end;
+   // flELpr[nELpr]:=false;
+  end;
+  if BytesRead>0 then
+  begin
+    ResponseLengthELpr:=BytesRead;
+    ELpribCalculateCRC16(ResponseBufferELpr,BytesRead-2);
+    if (ResponseBufferELpr[BytesRead-2]=Lo(crcELpr)) and (ResponseBufferELpr[BytesRead-1]=Hi(crcELpr))then //if CRC is OK
+    begin
+      if  BytesRead=105  then
+      begin
+        for j:= 0 to 2 do
+        begin
+          SingleBytes(S)[0] := ResponseBufferELpr[4+j*4];
+          SingleBytes(S)[1] := ResponseBufferELpr[3+j*4];
+          SingleBytes(S)[2] := ResponseBufferELpr[6+j*4];
+          SingleBytes(S)[3] := ResponseBufferELpr[5+j*4];
+          case ResponseBufferELpr[0] of 1: ps:=0; 2:ps:=3; 3:ps:=6; 4:ps:=9; end;
+          with TPanel(FindComponent('pCurW_' + IntToStr(j+1+ps))) do Caption:=RealToStr(s,5,1);//FloatToStr(S);
+
+          valW[j+1+ps]:=s;
+        end;
+        begin
+          //ShowMessage (IntToStr(Response[100]));
+          SingleBytes(S)[0] := ResponseBufferELpr[98];
+          SingleBytes(S)[1] := ResponseBufferELpr[97];
+          SingleBytes(S)[2] := ResponseBufferELpr[100];
+          SingleBytes(S)[3] := ResponseBufferELpr[99];
+          pTokr.Caption:=RealToStr(s,5,1);//FloatToStr(S);
+          Tokr:=s;
+        end;
+      end;
+    end;
+  end;
+ }
+
+   if not flAppClose then
+    TmrELprib.Enabled:=true;
+
+  
+end;
+
+   // ShowMessage('mistake CRC');
+   // ShowMessage('нет данных в ответе');
+
+
+
+procedure TfMain.TmrELpribTimer(Sender: TObject);
+var i:Integer;
+begin
+
+
+ // ELpribBuildRequest(nELpr,25,50);
+
+  TmrELprib.Enabled:=false;
+  if nELpr=4 then nELpr:=1       
+              else nELpr:=nELpr+1;
+  //
+  if Dev.State[nELpr] then ELpribBuildRequest(nELpr,25,50)
+  else   TmrELprib.Enabled:=true;
+
+end;
+
+
+
+
+
+
+initialization
+JclStackTrackingOptions := JclStackTrackingOptions + [stRAWMode];
+  JclStartExceptionTracking;
+
+finalization
+  JclStopExceptionTracking;
+
+end.
